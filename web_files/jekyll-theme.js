@@ -554,7 +554,7 @@ $(document).on('DOMContentLoaded', function() {
         }
 
         // Update margin
-        $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
+        // $('main').css('margin-bottom', Math.max(0, Math.ceil(margin)) + 'px');
 
         // Resize search UI
         if (mobile()) {
