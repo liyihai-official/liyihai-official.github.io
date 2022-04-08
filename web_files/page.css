@@ -224,4 +224,17 @@
     aside.col-md{flex:unset;height:auto !important}
     aside button[data-bs-toggle=collapse]{display:none}nav.collapse:not(.show),footer{display:none !important}}.img-thumbnail{width:-moz-fit-content}
 
+
+
+    .left {
+        float: left;
+        width: 45%;
+        height: 100%;
+        background-color: #fff;
+        margin-right: 5%;
+    }
+    .right {
+        margin-left: 500px;
+        background-color: blue;
+    }
 /*# sourceMappingURL=page.css.map */
