@@ -1,0 +1,37 @@
+.. toctree::
+  :maxdepth: 1
+
+Building applications
+=====================
+Essential environment path
+--------------------------
+Before compiling, the last step is to specify the arguments by running the following commands:
+
+.. code-block:: shell
+
+   export PATH_TO_GCC=/absolute/path/to/gcc
+   export PATH_TO_GXX=/absolute/path/to/g++
+   export PATH_TO_LIBTORCH=/absolute/path/to/libtorch
+
+   export NX=number/of/size/in/dimension0
+   export NY=number/of/size/in/dimension1
+   export NZ=number/of/size/in/dimension2
+
+
+Building
+---------------------
+We can now run the following commands to build the applications within the ``ver1.0`` folder:
+
+.. code-block:: shell
+
+   mkdir build
+   cmake -B build -S /path/to/ver1.0/  -DCMAKE_C_COMPILER=${PATH_TO_GCC} \
+                                       -DCMAKE_CXX_COMPILER=${PATH_TO_GXX} \
+                                       -DCMAKE_PREFIX_PATH=${PATH_TO_LIBTORCH} \
+                                       -DCMAKE_BUILD_TYPE=Release \
+                                       -DNX=${NX} -DNY=${NY} -DNZ=${NZ} 
+
+   cmake --build build 
+
+Moreover, you can use additional flags for building: ``-j<num_proc>`` for multi-process compiling and ``--target <executable>`` for specifying the compile target. 
+If you want to see the details of iterations such as total differences and training losses, the build type should be set to ``NDEBUG``.

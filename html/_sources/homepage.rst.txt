@@ -1,0 +1,17 @@
+Home Page
+=========
+
+This documentation is for the final project of the M.Sc. High Performance Computing.
+
+This project includes a library, a PDE finite difference time domain (FDTD) solver, and a Physics Informed Neural Network (PINN) implementation.
+
+The library includes:
+- A multi-dimension array class,
+- A basic MPI Init/Finalize structure,
+- An MPI Cartesian Topology class,
+- A distributed-multidimensional array class.
+
+The PDE solver includes the capability for solving heat equations in 2D and 3D dimensions with Dirichlet and Von Neumann boundary conditions.
+The PDE solver was integrated with three parallel models: one pure MPI and two types of hybrid models.
+
+The PINN includes the capability for learning the patterns based on the generated 2D and 3D datasets of heat equations.

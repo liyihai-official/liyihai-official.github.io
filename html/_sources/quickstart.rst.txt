@@ -1,0 +1,42 @@
+Requirements
+============
+
+If you are using a cluster, make sure you have loaded the right modules. 
+This project requires the modules ``cmake-3.1.x``, ``OpenMPI-4.x``, ``gcc-12.x`` and ``cuda-11.8`` at least.
+
+OpenMPI
+-------
+
+There are three general phases of using OpenMPI: installing OpenMPI, building MPI applications, and running MPI applications. 
+The links below take you to the "Quick start" of OpenMPI documentation.
+
+#. `Quick start: Installing Open MPI <https://docs.open-mpi.org/en/v5.0.x/installing-open-mpi/quickstart.html>`_
+#. `Quick start: Building MPI applications <https://docs.open-mpi.org/en/v5.0.x/building-apps/quickstart.html>`_
+#. `Quick start: Launching MPI applications <https://docs.open-mpi.org/en/v5.0.x/launching-apps/quickstart.html>`_
+
+OpenMP
+------
+
+OpenMP does not require an additional installation. Once you add the header file ``omp.h`` and the compile flag ``-fopenmp``, the program is ready.
+You can use the following shell command line:
+
+.. code-block:: shell
+
+   export OMP_NUM_THREADS=N
+
+to specify the number of threads, or by calling:
+
+.. code-block:: c
+
+   #pragma omp parallel num_threads(N)
+
+in the main file. 
+Please see the official `OpenMP documentation <https://www.openmp.org/resources/tutorials-articles/>`_ if you need further information.
+
+Libtorch
+--------
+
+The source files for the ``C++`` API of PyTorch from Meta can be downloaded from the 
+`official website <https://pytorch.org/get-started/locally/>`_. For more information, see the 
+`quick start example <https://pytorch.org/cppdocs/installing.html>`_.
+
