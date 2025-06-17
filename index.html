@@ -1,767 +1,121 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)https://cs50.harvard.edu/college/2022/spring/ -->
-<html lang="en-us" class="wf-ptsans-n7-active wf-ptsans-n4-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        
-        <meta name="viewport" content="initial-scale=1, width=device-width"><meta property="og:description" content="">
-
-        <script src="./src/webfont.js"></script>
-
-        <!-- http://getbootstrap.com/docs/4.6/getting-started/introduction/ -->
-        <script src="./src/jquery.min.js"></script>
-        <script src="./src/bootstrap.bundle.min.js"></script>
-
-        <!-- https://bootstrap-table.com/docs/getting-started/introduction/ -->
-        <link href="./src/bootstrap-table.min.css" rel="stylesheet">
-        <script src="./src/bootstrap-table.min.js"></script>
-        <script src="./src/bootstrap-table-mobile.min.js"></script>
-
-        <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
-        <link href="./src/all.min.css" rel="stylesheet">
-
-        <!-- https://moment.github.io/luxon/ -->
-        <script src="./src/luxon.min.js"></script>
-
-        <script crossorigin="anonymous" integrity="sha256-S8f0Q/V9VcfrqYgWo9EFS9zuDMdPTBMC+CBW0RjxQbs=" src="./src/iframeResizer.min.js"></script>
-
-        <!-- http://docs.mathjax.org/ -->
-        <!-- https://www.jsdelivr.com/package/npm/mathjax?path=es5 -->
-        <script crossorigin="anonymous" integrity="sha256-+nfSJ1LiSvANSK3wvi6FjM+oFwoIQvURU1frozp5z6o=" src="./src/tex-chtml.js"></script>
-        <style type="text/css">
-          .CtxtMenu_InfoClose {  top:.2em; right:.2em;}
-          .CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
-          .CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
-          .CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
-          </style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
-          .CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
-          .CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
-          .CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
-          .CtxtMenu_MenuClose:hover:focus {  outline:none}
-          </style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
-          .CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
-          .CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
-          .CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
-          .CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
-          .CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
-          .CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
-          .CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
-          .CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
-          .CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
-          .CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
-          .CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
-          .CtxtMenu_MenuSlider {  left: .1em;}
-          .CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
-          .CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
-          .CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
-          .CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
-          .CtxtMenu_MenuDisabled {  color:GrayText}
-          .CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
-          .CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
-          .CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
-          .CtxtMenu_ContextMenu:focus {  outline:none}
-          .CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
-          .CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
-          .CtxtMenu_SelectionItem {  padding-right: 1em;}
-          .CtxtMenu_Selection {  right: 40%; width:50%; }
-          .CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
-          .CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
-          .CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
-        </style>
-
-        <!-- https://github.com/verlok/vanilla-lazyload -->
-        <script src="./src/intersection-observer.js"></script>
-        <script src="./src/lazyload.min.js"></script>
-
-        <!-- https://github.com/davidjbradshaw/iframe-resizer -->
-        <!-- https://www.jsdelivr.com/package/npm/iframe-resizer?path=js -->
-        <script crossorigin="anonymous" integrity="sha256-S8f0Q/V9VcfrqYgWo9EFS9zuDMdPTBMC+CBW0RjxQbs=" src="./src/iframeResizer.min.js"></script>
-
-        <!-- https://github.com/scratchblocks/scratchblocks/releases -->
-        <script src="./src/scratchblocks.min.js"></script><style>
-        
-      <![CDATA[ .sb-label {
-      font-family: Lucida Grande, Verdana, Arial, DejaVu Sans, sans-serif;
-      font-weight: bold;
-      fill: #fff;
-      font-size: 10px;
-      word-spacing: +1px;
-    }
-
-    .sb-obsolete { fill: #d42828; }
-    .sb-motion { fill: #4a6cd4; }
-    .sb-looks { fill: #8a55d7; }
-    .sb-sound { fill: #bb42c3; }
-    .sb-pen { fill: #0e9a6c;  }
-    .sb-events { fill: #c88330; }
-    .sb-control { fill: #e1a91a; }
-    .sb-sensing { fill: #2ca5e2; }
-    .sb-operators { fill: #5cb712; }
-    .sb-variables { fill: #ee7d16; }
-    .sb-list { fill: #cc5b22 }
-    .sb-custom { fill: #632d99; }
-    .sb-custom-arg { fill: #5947b1; }
-    .sb-extension { fill: #4b4a60; }
-    .sb-grey { fill: #969696; }
-
-    .sb-bevel {
-      filter: url(#bevelFilter);
-    }
-
-    .sb-input {
-      filter: url(#inputBevelFilter);
-    }
-    .sb-input-number,
-    .sb-input-string,
-    .sb-input-number-dropdown {
-      fill: #fff;
-    }
-    .sb-literal-number,
-    .sb-literal-string,
-    .sb-literal-number-dropdown,
-    .sb-literal-dropdown {
-      font-weight: normal;
-      font-size: 9px;
-      word-spacing: 0;
-    }
-    .sb-literal-number,
-    .sb-literal-string,
-    .sb-literal-number-dropdown {
-      fill: #000;
-    }
-
-    .sb-darker {
-      filter: url(#inputDarkFilter);
-    }
-
-    .sb-outline {
-      stroke: #fff;
-      stroke-opacity: 0.2;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .sb-define-hat-cap {
-      stroke: #632d99;
-      stroke-width: 1;
-      fill: #8e2ec2;
-    }
-
-    .sb-comment {
-      fill: #ffffa5;
-      stroke: #d0d1d2;
-      stroke-width: 1;
-    }
-    .sb-comment-line {
-      fill: #ffff80;
-    }
-    .sb-comment-label {
-      font-family: Helevetica, Arial, DejaVu Sans, sans-serif;
-      font-weight: bold;
-      fill: #5c5d5f;
-      word-spacing: 0;
-      font-size: 12px;
-    }
-
-    .sb-diff {
-      fill: none;
-      stroke: #000;
-    }
-    .sb-diff-ins {
-      stroke-width: 2px;
-    }
-    .sb-diff-del {
-      stroke-width: 3px;
-    }
-  ]]></style><style><![CDATA[ .sb3-label {
-      font: 500 12pt Helevetica Neue, Helvetica, sans-serif;
-      fill: #fff;
-      word-spacing: +1pt;
-    }
-
-    .sb3-motion { fill: #4c97ff; stroke: #3373cc; }
-    .sb3-motion-alt { fill: #4280d7; }
-    .sb3-motion-dark { fill: #4c97ff; }
-    .sb3-looks { fill: #9966ff; stroke: #774dcb; }
-    .sb3-looks-alt { fill: #855cd6; }
-    .sb3-looks-dark { fill: #bd42bd; }
-    .sb3-sound { fill: #cf63cf; stroke: #bd42bd; }
-    .sb3-sound-alt { fill: #c94fc9; }
-    .sb3-sound-dark { fill: #bd42bd; }
-    .sb3-control { fill: #ffab19; stroke: #cf8b17; }
-    .sb3-control-alt { fill: #ec9c13; }
-    .sb3-control-dark { fill: #cf8b17; }
-    .sb3-events { fill: #ffbf00; stroke: #cc9900; }
-    .sb3-events-alt { fill: #e6ac00; }
-    .sb3-events-dark { fill: #cc9900; }
-    .sb3-sensing { fill: #5cb1d6; stroke: #2e8eb8; }
-    .sb3-sensing-alt { fill: #47a8d1; }
-    .sb3-sensing-dark { fill: #2e8eb8; }
-    .sb3-operators { fill: #59c059; stroke: #389438; }
-    .sb3-operators-alt { fill: #46b946; }
-    .sb3-operators-dark { fill: #389438; }
-    .sb3-variables { fill: #ff8c1a; stroke: #db6e00; }
-    .sb3-variables-alt { fill: #ff8000; }
-    .sb3-variables-dark { fill: #db6e00; }
-    .sb3-list { fill: #ff661a; stroke: #e64d00; }
-    .sb3-list-alt { fill: #ff5500; }
-    .sb3-list-dark { fill: #e64d00; }
-    .sb3-custom { fill: #ff6680; stroke: #ff3355; }
-    .sb3-custom-alt { fill: #ff4d6a; }
-    .sb3-custom-dark { fill: #ff3355; }
-    .sb3-custom-arg { fill: #ff6680; stroke: #ff3355; }
-
-    /* extension blocks, e.g. pen */
-    .sb3-extension { fill: #0fbd8c; stroke: #0b8e69; }
-    .sb3-extension-alt { fill: #0da57a; }
-    .sb3-extension-line { stroke: #0da57a; }
-    .sb3-extension-dark { fill: #0b8e69; }
-
-    /* obsolete colors: chosen by hand, indicates invalid blocks */
-    .sb3-obsolete { fill: #ed4242; stroke: #ca2b2b; }
-    .sb3-obsolete-alt { fill: #db3333; }
-    .sb3-obsolete-dark { fill: #ca2b2b; }
-
-    /* grey: special color from the Scratch 3.0 design mockups */
-    .sb3-grey { fill: #bfbfbf; stroke: #909090; }
-    .sb3-grey-alt { fill: #b2b2b2; }
-    .sb3-grey-dark { fill: #909090; }
-
-    .sb3-input-color {
-      stroke: #fff;
-    }
-
-    .sb3-input-number,
-    .sb3-input-string {
-      fill: #fff;
-    }
-    .sb3-literal-number,
-    .sb3-literal-string,
-    .sb3-literal-number-dropdown,
-    .sb3-literal-dropdown {
-      word-spacing: 0;
-    }
-    .sb3-literal-number,
-    .sb3-literal-string {
-      fill: #575e75;
-    }
-
-    .sb3-comment {
-      fill: #ffffa5;
-      stroke: #d0d1d2;
-      stroke-width: 1;
-    }
-    .sb3-comment-line {
-      fill: #ffff80;
-    }
-    .sb3-comment-label {
-      font: 400 12pt Helevetica Neue, Helvetica, sans-serif;
-      fill: #000;
-      word-spacing: 0;
-    }
-
-    .sb3-diff {
-      fill: none;
-      stroke: #000;
-    }
-    .sb3-diff-ins {
-      stroke-width: 2px;
-    }
-    .sb3-diff-del {
-      stroke-width: 3px;
-    }
-  ]]></style>
-
-        <!-- https://www.algolia.com/doc/guides/building-search-ui/installation/js/ -->
-        <script src="./src/algoliasearch-lite.umd.js"></script>
-        <script src="./src/instantsearch.production.min.js"></script>
-
-        <link href="./src/page.css" rel="stylesheet">
-        <link rel="stylesheet" href="./src/css" media="all">
-        <script src="./src/jekyll-theme.js">
-
-        </script>
-
-        <script>
-            window.CS50 = {
-                local: {"day":"numeric","hour":"numeric","minute":"numeric","month":"short","weekday":"short"},
-                locale: "en",
-                tz: "China"
-            };
-        </script>
-
-        <title>LI Yihai (李艺海)</title>
-
-        <link rel="icon" href=."src/logo.png" sizes="32x32">
-
-
-    <style id="MJX-CHTML-styles">
-mjx-container[jax="CHTML"] {
-  line-height: 0;
-}
-
-mjx-container [space="1"] {
-  margin-left: .111em;
-}
-
-mjx-container [space="2"] {
-  margin-left: .167em;
-}
-
-mjx-container [space="3"] {
-  margin-left: .222em;
-}
-
-mjx-container [space="4"] {
-  margin-left: .278em;
-}
-
-mjx-container [space="5"] {
-  margin-left: .333em;
-}
-
-mjx-container [rspace="1"] {
-  margin-right: .111em;
-}
-
-mjx-container [rspace="2"] {
-  margin-right: .167em;
-}
-
-mjx-container [rspace="3"] {
-  margin-right: .222em;
-}
-
-mjx-container [rspace="4"] {
-  margin-right: .278em;
-}
-
-mjx-container [rspace="5"] {
-  margin-right: .333em;
-}
-
-mjx-container [size="s"] {
-  font-size: 70.7%;
-}
-
-mjx-container [size="ss"] {
-  font-size: 50%;
-}
-
-mjx-container [size="Tn"] {
-  font-size: 60%;
-}
-
-mjx-container [size="sm"] {
-  font-size: 85%;
-}
-
-mjx-container [size="lg"] {
-  font-size: 120%;
-}
-
-mjx-container [size="Lg"] {
-  font-size: 144%;
-}
-
-mjx-container [size="LG"] {
-  font-size: 173%;
-}
-
-mjx-container [size="hg"] {
-  font-size: 207%;
-}
-
-mjx-container [size="HG"] {
-  font-size: 249%;
-}
-
-mjx-container [width="full"] {
-  width: 100%;
-}
-
-mjx-box {
-  display: inline-block;
-}
-
-mjx-block {
-  display: block;
-}
-
-mjx-itable {
-  display: inline-table;
-}
-
-mjx-row {
-  display: table-row;
-}
-
-mjx-row > * {
-  display: table-cell;
-}
-
-mjx-mtext {
-  display: inline-block;
-}
-
-mjx-mstyle {
-  display: inline-block;
-}
-
-mjx-merror {
-  display: inline-block;
-  color: red;
-  background-color: yellow;
-}
-
-mjx-mphantom {
-  visibility: hidden;
-}
-
-mjx-assistive-mml {
-  position: absolute !important;
-  top: 0px;
-  left: 0px;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 1px 0px 0px 0px !important;
-  border: 0px !important;
-  display: block !important;
-  width: auto !important;
-  overflow: hidden !important;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-mjx-assistive-mml[display="block"] {
-  width: 100% !important;
-}
-
-mjx-c::before {
-  display: block;
-  width: 0;
-}
-
-.MJX-TEX {
-  font-family: MJXZERO, MJXTEX;
-}
-
-.TEX-B {
-  font-family: MJXZERO, MJXTEX-B;
-}
-
-.TEX-I {
-  font-family: MJXZERO, MJXTEX-I;
-}
-
-.TEX-MI {
-  font-family: MJXZERO, MJXTEX-MI;
-}
-
-.TEX-BI {
-  font-family: MJXZERO, MJXTEX-BI;
-}
-
-.TEX-S1 {
-  font-family: MJXZERO, MJXTEX-S1;
-}
-
-.TEX-S2 {
-  font-family: MJXZERO, MJXTEX-S2;
-}
-
-.TEX-S3 {
-  font-family: MJXZERO, MJXTEX-S3;
-}
-
-.TEX-S4 {
-  font-family: MJXZERO, MJXTEX-S4;
-}
-
-.TEX-A {
-  font-family: MJXZERO, MJXTEX-A;
-}
-
-.TEX-C {
-  font-family: MJXZERO, MJXTEX-C;
-}
-
-.TEX-CB {
-  font-family: MJXZERO, MJXTEX-CB;
-}
-
-.TEX-FR {
-  font-family: MJXZERO, MJXTEX-FR;
-}
-
-.TEX-FRB {
-  font-family: MJXZERO, MJXTEX-FRB;
-}
-
-.TEX-SS {
-  font-family: MJXZERO, MJXTEX-SS;
-}
-
-.TEX-SSB {
-  font-family: MJXZERO, MJXTEX-SSB;
-}
-
-.TEX-SSI {
-  font-family: MJXZERO, MJXTEX-SSI;
-}
-
-.TEX-SC {
-  font-family: MJXZERO, MJXTEX-SC;
-}
-
-.TEX-T {
-  font-family: MJXZERO, MJXTEX-T;
-}
-
-.TEX-V {
-  font-family: MJXZERO, MJXTEX-V;
-}
-
-.TEX-VB {
-  font-family: MJXZERO, MJXTEX-VB;
-}
-
-mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
-  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
-}
-
-@font-face /* 0 */ {
-  font-family: MJXZERO;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
-}
-
-@font-face /* 1 */ {
-  font-family: MJXTEX;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
-}
-
-@font-face /* 2 */ {
-  font-family: MJXTEX-B;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
-}
-
-@font-face /* 3 */ {
-  font-family: MJXTEX-I;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
-}
-
-@font-face /* 4 */ {
-  font-family: MJXTEX-MI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
-}
-
-@font-face /* 5 */ {
-  font-family: MJXTEX-BI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
-}
-
-@font-face /* 6 */ {
-  font-family: MJXTEX-S1;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
-}
-
-@font-face /* 7 */ {
-  font-family: MJXTEX-S2;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
-}
-
-@font-face /* 8 */ {
-  font-family: MJXTEX-S3;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
-}
-
-@font-face /* 9 */ {
-  font-family: MJXTEX-S4;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
-}
-
-@font-face /* 10 */ {
-  font-family: MJXTEX-A;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
-}
-
-@font-face /* 11 */ {
-  font-family: MJXTEX-C;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
-}
-
-@font-face /* 12 */ {
-  font-family: MJXTEX-CB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
-}
-
-@font-face /* 13 */ {
-  font-family: MJXTEX-FR;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
-}
-
-@font-face /* 14 */ {
-  font-family: MJXTEX-FRB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
-}
-
-@font-face /* 15 */ {
-  font-family: MJXTEX-SS;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
-}
-
-@font-face /* 16 */ {
-  font-family: MJXTEX-SSB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
-}
-
-@font-face /* 17 */ {
-  font-family: MJXTEX-SSI;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
-}
-
-@font-face /* 18 */ {
-  font-family: MJXTEX-SC;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
-}
-
-@font-face /* 19 */ {
-  font-family: MJXTEX-T;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
-}
-
-@font-face /* 20 */ {
-  font-family: MJXTEX-V;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
-}
-
-@font-face /* 21 */ {
-  font-family: MJXTEX-VB;
-  src: url("https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
-}
-</style>
+<html lang="en-us" class="wf-ptsans-n7-active wf-ptsans-n4-active wf-active">
+<head>
+  <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8">        
+  <meta name = "viewport"           content = "initial-scale=1, width=device-width"> 
+  <meta property = "og:description" content = "Personal Webpage"> 
+  
+  <!-- Link to js, css files -->
+  <script src="src/webfont.js"></script>
+
+  <!-- http://getbootstrap.com/docs/4.6/getting-started/introduction/ -->
+  <script src="src/jquery.min.js"></script>
+  <script src="src/bootstrap.bundle.min.js"></script>
+
+  <!-- https://bootstrap-table.com/docs/getting-started/introduction/ -->
+  <link href="src/bootstrap-table.min.css" rel="stylesheet">
+  <script src="src/bootstrap-table.min.js"></script>
+  <script src="src/bootstrap-table-mobile.min.js"></script>
+
+  <!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+  <link href="src/all.min.css" rel="stylesheet">
+
+  <!-- https://moment.github.io/luxon/ -->
+  <script src="src/luxon.min.js"></script>
+
+  <script 
+    crossorigin="anonymous" 
+    integrity="sha256-S8f0Q/V9VcfrqYgWo9EFS9zuDMdPTBMC+CBW0RjxQbs=" 
+    src="src/iframeResizer.min.js">
+  </script>
+
+  <!-- http://docs.mathjax.org/ -->
+  <!-- https://www.jsdelivr.com/package/npm/mathjax?path=es5 -->
+  <script 
+    crossorigin="anonymous" 
+    integrity="sha256-+nfSJ1LiSvANSK3wvi6FjM+oFwoIQvURU1frozp5z6o=" 
+    src="src/tex-chtml.js">
+  </script>
+
+
+  <link rel="context-menu" href="context-menu.html"/>
+
+  <title>This is title</title>  
+  <link rel="stylesheet" href="css/styles.css" />
 
 </head>
 
-    <body class="" data-new-gr-c-s-check-loaded="14.1054.0" data-gr-ext-installed="">
-        <div class="alert fixed-top mb-0 rounded-0 shadow alert-dismissible" data-alert="dismissible" data-hash="48bf86bb94fbe6a1549c8a216ccbf4c8" id="alert" role="alert">
-            </button>
-            <style>
-                .alert.fixed-top {
-                    border: 0 !important;
-                    color: #fff;
-                    padding: 0 !important;
-                    text-align: center;
-                }
-                .alert.fixed-top .btn-close {
-                    filter: invert(.75);
-                    font-size: .6rem;
-                    padding-top: 0;
-                }
-            </style>
+
+
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="row-md" style="height: var(--nav-height); top: 88px;">
+        <header>
+          <nav class="u-navContainer" style="height: var(--nav-height); top: 0px;">
+            <div class="u-flexContainer">
+              <section class = "u-textCenter">
+                <h4><a href="#aboutme">About Me</a></h4>
+              </section>
+
+              <section class = "u-textCenter">
+                <h4>Projects</h4>
+              </section>
+
+              <section class = "u-textCenter">
+                <h4>Experience</h4>
+              </section>
+
+              <section class = "u-textCenter">
+                <h4>Awards</h4>
+              </section>
+
+            </div>
+            <hr style="margin-top: 0px; margin-bottom: 0px;">
+          </nav>
+        </header>
+      </aside>
+    </div>
+    
+
+    <!-- <main >
+      <div class="row">
+        <div class="col-md-12">
         </div>
-        
-        <div class="container-fluid">
-            <div class="row">
-                <aside class="col-md" style="height: 856px; top: 58px;">
-                    <div>
-                        <img src="./src/IMG_7092.png" style="max-width:100%; height:auto;">
-                    </div>
-                    <header>
-                        <h1 data-id="this-is-cs50">
-                            <a href="#aboutme" style="font-size: 1.75rem">
-                                LI Yihai (李艺海)
-                            </a>
-                        </h1>
-                        <p>
-                          <a href="https://www.tcd.ie/" style="font-size: 1.125rem">Trinity College Dublin (TCD)</a>
-                          <br>Major: High Performance Computing
-                          <br>E-mail: parleywong98@gmail.com<br>Location: Ireland Dublin
-                        </p>
-                        <hr>
-                          <!-- <a href="https://github.com/liyihai-official">Github</a> -->
-                          <a href="https://github.com/liyihai-official" target="_blank" style="display: flex; align-items: center;">
-                            <img src="https://github.com/fluidicon.png" alt="GitHub" width="20" height="20">
-                             GitHub
-                          </a>                          
-                          <!-- <br> -->
-                          <a href="https://scholar.google.com/citations?user=zXL5XZkAAAAJ&hl=zh-CN">Google Scholar</a>
-                          <br>
-                          <a>LinkdIn</a>   
-                          
-                    </header>
+      </div>
+    </main> -->
+  </div>
 
-                    <button aria-controls="nav" aria-expanded="false" class="btn btn-sm collapsed d-md-none" data-bs-target="aside &gt; nav" data-bs-toggle="collapse">
-                        Menu</button>
 
-                    <nav class="collapse d-md-block" id="nav">
-                        <hr>                
-                        <ul class="fa-ul">
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#aboutme">About Me</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#education">Education</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#Projects">Projects</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#publications">Publications</a> </li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#research_experience">Researches</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#honors_scholarships">Honors & Scholarships</a> </li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="#certifications">Certifications</a> </li>
-                        </ul>
-                        <!-- <hr> -->
+  <main class="col-md" style="margin-bottom: 10px; margin-top: 0px;">
+    <section class = "unit-mainTextContainer">
+      <div class = "unit-mainFlexContainer">
+        <section class = "u-textCenter" style="background-color: aquamarine;">
+          <a >
+            Welcome to my personal webpage!
+            Welcome to my personal webpage!
+          </a>
+        </section>
+        <section class = "u-textLeft" style="background-color: aqua;">
+        At present, I am dedicating myself to various research fields, 
+        including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
+        As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
+        believing that teaching and communicating are fundamental to the process of self-improvement.
+        At present, I am dedicating myself to various research fields, 
+        including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
+        As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
+        believing that teaching and communicating are fundamental to the process of self-improvement.
+        </section>
+      </div>
+    </section>
 
-                        <!-- <ul class="fa-ul">
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="https://github.com/liyihai-official">Github</a> </li>  
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a href="https://scholar.google.com/citations?user=zXL5XZkAAAAJ&hl=zh-CN">Google Scholar</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a>LinkdIn</a> </li>  
-                            <!-- <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a>Announcements</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a>Mathematics</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a>Computer Science</a></li>
-                            <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span><a>Advisors</a></li> -->
-                            <!-- href="https://github.com/liyihai-official" 
-                        </ul> -->
-                        <!-- <hr> -->
-
-                        <!-- <ul class="small fa-ul">
-                            <li data-marker="*"><a href="https://space.bilibili.com/2050203">Bilibili</a></li>
-                            <li data-marker="*"><a href="https://www.youtube.com/channel/UCDnjXl4VSJSuYPV6N0XtONA/videos">Youtube</a></li>
-                            <li data-marker="*"><a href="https://www.edx.org/course/introduction-computer-science-harvardx-cs50x?index=product">CS50 Pages</a></li>
-                            <li data-marker="*"><a href="http://cea.ceaj.org/CN/1002-8331/home.shtml">CE&CA Pages</a></li>
-                        </ul> -->
-                    
-                    </nav>
-                    <footer></footer>
-                </aside>
-
-<main class="col-md" style="margin-bottom: 10px; margin-top: 0px;">
-    <h1>
-      <a data-id="" id="aboutme" style="top: 0px;"></a>
-      <a data-id="" href="#aboutme">
-      <!-- <a data-id="" href="./index.html"> -->
-        Hello, World!
-      </a>
+    <!-- <h1>
+      <a data-id="" id="aboutme" style="scroll-margin-top: var(--nav-height)"></a>
+      <a data-id="" href="#aboutme">Hello, World!</a>
     </h1>
 
     <ul class="fa-ul">
-    <!-- <li data-marker="*">
-        <span class="fa-li">
-          <i class="fas fa-square">
-          </i>
-        </span> -->
-        <!-- Hello World ! 
-        I'm LI Yihai, currently a Postgraduate Student studied High Performance Computing in 
-        <a href="https://www.tcd.ie/">  
-        Trinity College Dublin
-       </a>. 
-        In previous years, I got Mathematics 
-        and Applied Mathematics' Bachelor Degree in
-        Mathematics institute ShanXi University 2020 with GPA 86.07/100. 
-        <br>
-        Nowadays, I'm trying to devote myself into different researcher fields, 
-        including continuing drill mathematical skills and coding abilities in artificial intelligence related projects.
-        As I consecutively dig in how to become a good learner, I also is attempting to be a better teacher for which 
-        teaching and communicating are those bedrocks of fundamental process of reviewing myself.
-        Research works in PA ST 806: Deep Learning with the 
-        <a href="https://seas.harvard.edu/person/pavlos-protopapas">Pavlos Protopapas</a> Team for 3 months in 2021. --> 
         I'm Li Yihai, currently pursuing a Postgraduate Degree in <a href="https://www.maths.tcd.ie/postgraduate/masters/">High Performance Computing</a> at 
         <a href="https://www.tcd.ie/">Trinity College Dublin</a>. 
         <br><br>
@@ -780,180 +134,16 @@ mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
         including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
         As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
         believing that teaching and communicating are fundamental to the process of self-improvement.
-    </ul>
-
-    <h2>
-      <a data-id="" id="education" style="top: 0px;"></a>
-      <a data-id="" href="#education"> Education </a>
-    </h2>
-      <ul>
-        <li data-marker="*">Bachelor, Theoretical & Applied Mathematical, 2020</li>
-        <p><a style="font-size: medium;">Shanxi University </a></p>
-        <li data-marker="*">M.Sc., High Performance Computing, 2023</li>
-        <p><a style="font-size: medium;">Trinity College Dublin</a></p>
-      </ul>
-
-
-    <h2>
-      <a data-id="" id="Projects" style="top: 0px;"></a>
-      <a data-id="" href="#Projects"> Projects </a>
-    </h2>
-    <ul>
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>
-        MAP55640 <a href="html/index.html">Final Project</a>, Hybrid Parallel Models of FDTD and PINN implementation of Heat Equation
-      </li>
-    </ul>
-
-
-    <h2>   
-      <a data-id="" id="publications" style="top: 0px;"></a>
-      <a data-id="" href="#publications">Publications</a>                                              
-    </h2>
-    <ul>
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>
-        <a href="http://cea.ceaj.org/CN/abstract/abstract37496.shtml">Diagnosability of Unidirectional K-ary N-cubes under PMC Model</a>
-        <a>ZHANG Wenli, LIN Shangwei,</a><a style="font-weight: bold;">LI Yihai</a><a>, GUO Huiling,</a>
-        <a style="font-weight: bold;">Computer Engineering and Application, 2019, 55(4): 62-65</a><br>
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>
-        <a href="https://ieeexplore.ieee.org/abstract/document/9696065">Detecting Post Hurricane House Damage Using Geographic Information Related Multi-Resource Classification Model</a>
-        <a style="font-weight: bold;">LI Yihai</a><a>, GU Shaotang,</a>
-        <a style="font-weight: bold;">2021 2nd International Conference on Big Data & Artificial Intelligence & Software Engineering (ICBASE)</a><br>
-    </ul>
-
-    <h2>   
-      <a data-id="" id="research_experience" style="top: 0px;"></a>
-      <a data-id="" href="#research_experience">Researches  </a>                                              
-    </h2>
-      <h4 >Data Science and Artificial Intelligence: Deep Learning—Upper Intermediate, Harvard University Jan. 2021-Mar. 2021</h4>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Familiarized with machine learning modules, such as Tensorflow 2.0+.<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Acquired algorithms of machine learning specifically in Convolutional Neural Networks<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Understood several methods of evaluation model like Bootstrap algorithm and knew how to build Proxy model to evaluate the model<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Learned methods of Grad-CAM Map, Saliency Map to check the internal learning process of neural networks<br>
-      </ul>
-      <h4 >Rank of Matrix, Final Project of CS50: Introduction to Computer Science, Harvard University               Dec. 2020</h4>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Made a comparison of C and Python, and decided to use C to achieve the rank function of arbitrary elements’ non-0 matrix<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Added a value that can transform the matrix to an upper triangle or lower triangle format so as to test whether the input data meets the requirement<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Calculated the determinant value of required matrix<br>
-      </ul>
-      <h4 >Mathematical Modeling, Online Project, Temperate University                               Oct. 2018-Nov. 2018</h4>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Took courses of Dimensional Analysis and Data Mining; acquainted with the application of Dimensionalanalyysikone to deal with actual problems<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Understood how to use LISp_Miner to solve problems about data mining<br>
-      </ul>
-      <h4>Diagnosability of One-way K-ary N-cube under PMC Model. Leader of a Five-member team                              Nov. 2017-Nov. 2018</h4>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Participated in the topic meeting each week and discussed research contents with graduates<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Studied and arranged the theorem used in the research; utilized it to derive the result of diagnosability under PMC model<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Confirmed the 1-good-neighbor connectivity, diagnosability, and 1-good-neighbor diagnosability of directional k-ary n-cube and nondirectional k-ary n-cube<br>
-      </ul>
-      <h4>Technology of Big Data, Hot Words Statistics, Oracle                                              Nov. 2018</h4>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Learned how to build virtual machine on the computer and Linux Ubuntu system <br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Assembled X-shell to connect Ubuntu system remotely; configured encrypted Hadoop clusters distributed processing environment through X-shell<br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Updated Hadoop configuration file with the newest configuration parameters on Apache website <br>
-      </ul>
-
-    <h2>   
-      <a data-id="" id="honors_scholarships" style="top: 0px;"></a>
-      <a data-id="" href="#honors_scholarships">Honors & Scholarships</a>                                              
-    </h2>
-      <ul>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2019.11, The Third-class Outstanding Student Scholarship, Shanxi University                                <br>  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2019.01, Successful Participant, Interdisciplinary Contest In Modeling                                    <br>
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2018.11, The Third Prize, The 10th Chinese Mathematics Competitions (Mathematics)                          <br>  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2018.01, Honorable Mention, Interdisciplinary Contest In Modeling                                        <br>  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2017.11, The First Prize, The 9th Chinese Mathematics Competitions (Mathematics)                    <br>  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2017.11, The Third Prize, Shanxi Province, 2017 Mathematical Contest in Modeling                      <br>   
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2017.10, The First-class Outstanding Student Scholarship, Shanxi University                             <br>  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2017.01, The Merit Student, Shanxi University                                      <br>                  
-        <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>2016.11, The Second Prize, Shanxi Province, 2016Mathematical Contest in Modeling                     <br>  
-      </ul>
-  
-
-    <h2>   
-      <a data-id="" id="certifications" style="top: 0px;"></a>
-      <a data-id="" href="#certifications">Certifications</a>                                              
-    </h2>
-    <ul>
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>Duolingo 135 Overall (Literacy: 140,
-        Comprehension: 135,
-        Conversation: 120,
-        Production: 135), 2023.03-2025.03<br>  
-      <li data-marker="*"> Edx, CS50: Introduction to Computer Science; Harvard University, 2021</li>
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>College English Test Band 6 (CET-6), 2018.06<br>  
-      <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>College English Test Band 4 (CET-4), 2017.12<br>  
-    </ul>
-
-
-    <!-- <h2>CS50: Introduction to Computer Science Final Project </h2> -->
-    <!-- <div style="margin-bottom: 1em;">
-      <ul>
-        <li>
-          <li data-marker="*"><span class="fa-li"><i class="fas fa-square"></i></span>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam, quos a
-      tque amet quibusdam magnam sit perferendis nihil eligendi vero voluptas ex
-      ercitationem odio sapiente quas, voluptate debitis, officia voluptatem simi
-      lique at?<br>  
-        </li>
-      </ul>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam, quos a
-      tque amet quibusdam magnam sit perferendis nihil eligendi vero voluptas ex
-      ercitationem odio sapiente quas, voluptate debitis, officia voluptatem simi
-      lique at?
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam, quos a
-      tque amet quibusdam magnam sit perferendis nihil eligendi vero voluptas ex
-      ercitationem odio sapiente quas, voluptate debitis, officia voluptatem simi
-      lique at?
-    </div> -->
-    <!-- <iframe 
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen="" class="border" data-video="" 
-      src="https://player.bilibili.com/player.html?bvid=BV13v41187pA&page=1&as_wide=1&high_quality=1&danmaku=0&t=0" 
-      scrolling="no" 
-      id="iFrameResizer0" 
-      style=" overflow: hidden;">
-      
-    </iframe> -->
-    <!-- <video id="myVideo" width="960" height="540" controls>
-      <source src="/source_files/myvideo.mp4" type="video/mp4">
-      <source src="/source_files/myvideo.ogg" type="video/ogg">
-      Your browser does not support the video tag.
-    </video> -->
-  
-    <!-- <iframe 
-    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen="" class="border" data-video="" 
-    src="./src/presentation.mp4" 
-    scrolling="no" 
-    id="iFrameResizer0" 
-    style=" overflow: hidden;">
-    </iframe> -->
+    </ul> -->
   </main>
-</div>
- 
 
-</div>
 
-        <div aria-hidden="true" aria-labelledby="searchTitle" class="markdown-body modal" id="search" role="dialog" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="pe-3 w-100" id="searchbox"></div>
-                        <button class="btn btn-secondary btn-lg" data-bs-dismiss="modal" type="button">Close</button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="hits"></div>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-            </div>
-        </div>
- 
-        <script src="./src/page.js"></script>
+  
 
 
 
-</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+</body>
+
+
+
+</html>

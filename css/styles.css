@@ -1,0 +1,103 @@
+/* Style Code Here */
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+
+
+:root {
+  --background-color: #ffffff; 
+  --nav-height: 60px;
+  --main-width: 800px;
+}
+
+body {
+  font-family: 'Arimo', sans-serif;   /* Use Arimo font */
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #ffffff;
+  }
+}
+
+/*  */
+.u-textCenter {
+  text-align: center;
+  height: var(--nav-height);
+}
+
+.u-textLeft {
+  text-align: left;
+  max-width: 60%;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 5%;
+}
+
+/* // */
+.u-navContainer {
+  background-color: var(--background-color);
+  position: fixed;
+  width: 100%;
+  min-width: max-content;
+}
+
+
+/*  */
+.u-flexContainer {
+  display: flex;
+  flex-direction: row column;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 20px;
+  row-gap: 10px;
+}
+
+
+.unit-mainFlexContainer {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* width: 100%;
+  max-width: 1000px;
+  margin: auto; */
+}
+
+.unit-mainTextContainer {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  align-items: center;
+  max-width: var(--main-width);
+  /* width: 100%; */
+  margin: auto;
+  background-color: #818181;
+  /* padding: 20px; */
+}
+
+
+
+
+.unit-flexImageWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.unit-avatarContainer {
+  max-width: 10%;
+  min-width: 100px;
+  /* width: 100%; */
+
+  border-radius: 50%;
+  
+  aspect-ratio: 1;
+  object-fit: cover;;
+}
+
+
+

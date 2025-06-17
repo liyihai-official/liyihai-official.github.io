@@ -1,0 +1,24 @@
+{
+  "name": "liyihai-official.github.io",
+  "version": "1.0.0",
+  "description": "My personal website.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --port=8080 ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liyihai-official/liyihai-official.github.io.git"
+  },
+  "keywords": [
+    "Personal",
+    "Website"
+  ],
+  "author": "LI Yihai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liyihai-official/liyihai-official.github.io/issues"
+  },
+  "homepage": "https://github.com/liyihai-official/liyihai-official.github.io#readme"
+}
