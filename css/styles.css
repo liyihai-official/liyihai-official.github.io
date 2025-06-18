@@ -101,3 +101,124 @@ body {
 
 
 
+
+
+
+    /* 重置部分样式 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* 整体布局 */
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      position: relative;
+      background: #333;
+      color: #fff;
+      padding: 0.5em 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* 菜单按钮样式（汉堡包图标） */
+    .menu-btn {
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .menu-btn span {
+      display: block;
+      height: 4px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+/* 导航栏：默认折叠，高度为0，隐藏溢出，准备过渡 */
+nav {
+  /* 已有 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fa9696df;
+
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+
+  /* 确保内容在伪元素之上 */
+  z-index: 10000;
+}
+
+
+/* ========== 全屏背景伪元素 ========== */
+nav::before {
+  content: "";
+  position: fixed;     /* 固定在视口 */
+  top: 400px; left: 0;
+  right: 0; bottom: 0;
+  background: #f37c7c79;
+  z-index: 1;          /* 在 nav 内容下方 */
+}
+
+nav.open::before {
+  display: block;
+}
+nav:not(.open)::before {
+  display: none;
+}
+
+
+
+/* 导航链接样式保持不变 */
+nav a {
+  padding: 0.75em 1em;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #555;
+}
+
+nav a:hover {
+  background: #918787;
+}
+
+/* 展开时，把 max-height 设成一个足够大的值 */
+nav.open {
+  /* 替换原来的 display:flex */
+  max-height: 100vh; /* 确保比实际内容高度大就行 */
+}
+
+/* “汉堡”按钮动效、媒体查询保持不变 */
+.menu-btn.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-btn.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+  .menu-btn { display: none; }
+  nav {
+    position: static;
+    overflow: visible !important;    /* 桌面端取消 overflow:hidden */
+    max-height: none !important;     /* 取消 max-height 限制 */
+    display: flex !important;
+    flex-direction: row;
+    background: transparent;
+  }
+  nav a {
+    border: none;
+    padding: 0 1em;
+  }
+}
