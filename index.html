@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us" class="wf-ptsans-n7-active wf-ptsans-n4-active wf-active">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple-style Navbar</title>
   <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8">        
   <meta name = "viewport"           content = "initial-scale=1, width=device-width"> 
   <meta property = "og:description" content = "Personal Webpage"> 
@@ -44,119 +47,116 @@
   <title>This is title</title>  
   <link rel="stylesheet" href="css/styles.css" />
   <!-- <link href="./src/page.css" rel="stylesheet"> -->
-
+  
 </head>
 
 
 
 
+
+
+
+
 <body>
-  <header>
-    <div class="logo">我的网站</div>
-    <div class="menu-btn" id="menuBtn">
+  <header class="navbar">
+    <a href="#" class="logo" aria-label="Logo">
+      <img src="path/to/your-logo.png" alt="Logo" class="logo-img">
+    </a>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
       <span></span>
       <span></span>
-      <span></span>
-    </div>
-    <nav id="navBar">
-      <a href="#home">首页</a>
-      <a href="#about">关于</a>
-      <a href="#services">服务</a>
-      <a href="#contact">联系</a>
-      <a href="#about">关于</a>
-      <a href="#services">服务</a>
-      <a href="#contact">联系</a>
-      <a href="#about">关于</a>
-      <a href="#services">服务</a>
-      <a href="#contact">联系</a>
-    </nav>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Me</a>
+        <ul class="dropdown">
+          <li><a href="#">Education</a></li>
+          <li><a href="#">Research</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Hobby</a>
+        <ul class="dropdown">
+          <li><a href="#">Snooker</a></li>
+          <li><a href="#">Cubing</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Projects</a>
+        <ul class="dropdown">
+          <li><a href="#">FDTD</a></li>
+          <li><a href="#">PINN</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Publications</a>
+        <ul class="dropdown">
+          <li><a href="#">Journal</a></li>
+          <li><a href="#">Conference</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Awards</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Certifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Support</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" aria-label="Search">
+          <!-- Search Icon -->
+          <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M11.617 10.443h-.797l-.283-.273a6.471 6.471 0 001.573-4.228A6.5 6.5 0 005.61 0 6.5 6.5 0 000 6.5a6.5 6.5 0 006.5 6.5c1.596 0 3.053-.596 4.193-1.586l.287.285v.797l5 4.99L16.607 15l-4.99-5zm-5.117 0A4.443 4.443 0 011.057 6.5 4.443 4.443 0 015.5 2.057 4.443 4.443 0 019.943 6.5a4.443 4.443 0 01-3.443 3.943z" fill="currentColor"/></svg>
+        </a>
+      </li>
+    </ul>
   </header>
 
-  <!-- <div class="container-fluid">
-    <div class="row">
-
-
-      <aside class="row-md" style="height: var(--nav-height); top: 88px;">
-        <header>
-        <button 
-          aria-controls="nav" 
-          aria-expanded="false" 
-          class="btn btn-sm collapsed d-md-none" 
-          data-bs-target="aside &gt; nav" 
-          data-bs-toggle="collapse"
-          >
-          Menu
-        </button>
-          <nav
-            id="nav"
-            class="collapse d-md-block u-navContainer"
-            style="height: var(--nav-height); top: 0px;"
-          >
-          
-            <div class="u-flexContainer">
-              <section class = "u-textCenter">
-                <h4><a href="#aboutme">About Me</a></h4>
-              </section>
-
-              <section class = "u-textCenter">
-                <h4>Projects</h4>
-              </section>
-
-              <section class = "u-textCenter">
-                <h4>Experience</h4>
-              </section>
-
-              <section class = "u-textCenter">
-                <h4>Awards</h4>
-              </section>
-
-            </div>
-            <hr style="margin-top: 0px; margin-bottom: 0px;">
-          </nav>
-        </header>
-      </aside>
-    </div>
-    
-  </div> -->
-
-
-  <main class="col-md" style="margin-bottom: 10px; margin-top: 0px;">
-    <section class = "unit-mainTextContainer">
-      <div class = "unit-mainFlexContainer">
-        <section class = "u-textCenter" style="background-color: aquamarine;">
-          <a >
-            Welcome to my personal webpage!
-            Welcome to my personal webpage!
-          </a>
-        </section>
-        <section class = "u-textLeft" style="background-color: aqua;">
-        At present, I am dedicating myself to various research fields, 
-        including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
-        As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
-        believing that teaching and communicating are fundamental to the process of self-improvement.
-        At present, I am dedicating myself to various research fields, 
-        including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
-        As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
-        believing that teaching and communicating are fundamental to the process of self-improvement.
-        </section>
-      </div>
-    </section>
-  </main>
-
-
   
-
-
+  
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-    const navBar = document.getElementById('navBar');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    const items = document.querySelectorAll('.nav-item');
 
-    menuBtn.addEventListener('click', () => {
-      navBar.classList.toggle('open');
-      menuBtn.classList.toggle('open');
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('open');
+    });
+
+    items.forEach(item => {
+      const link = item.querySelector('.nav-link');
+      const dropdown = item.querySelector('.dropdown');
+      if (dropdown) {
+        link.addEventListener('click', e => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            const isOpen = item.classList.toggle('open');
+            link.setAttribute('aria-expanded', String(isOpen));
+          }
+        });
+      }
+    });
+
+    document.addEventListener('click', e => {
+      if (window.innerWidth <= 768) {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+          hamburger.setAttribute('aria-expanded', 'false');
+          navLinks.classList.remove('open');
+          items.forEach(i => {
+            i.classList.remove('open');
+            const l = i.querySelector('.nav-link');
+            if (l) l.setAttribute('aria-expanded', 'false');
+          });
+        }
+      }
     });
   </script>
 </body>
+
 
 
 

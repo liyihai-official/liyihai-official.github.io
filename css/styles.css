@@ -1,224 +1,140 @@
-/* Style Code Here */
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+/* Reset & Base */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; color: #1d1d1f; }
 
-
-:root {
-  --background-color: #ffffff; 
-  --nav-height: 60px;
-  --main-width: 800px;
-}
-
-body {
-  font-family: 'Arimo', sans-serif;   /* Use Arimo font */
-  background-color: #ffffff;
-  color: #000000;
-  margin: 0;
-}
-
-/* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #ffffff;
-  }
-}
-
-/*  */
-.u-textCenter {
-  text-align: center;
-  height: var(--nav-height);
-}
-
-.u-textLeft {
-  text-align: left;
-  max-width: 60%;
-  padding: 30px;
-  margin: 20px;
-  border-radius: 5%;
-}
-
-/* // */
-.u-navContainer {
-  background-color: var(--background-color);
-  position: fixed;
-  width: 100%;
-  min-width: max-content;
-}
-
-
-/*  */
-.u-flexContainer {
+/* Navbar container */
+.navbar {
   display: flex;
-  flex-direction: row column;
-  flex-wrap: wrap;
-  justify-content: center;
-  column-gap: 20px;
-  row-gap: 10px;
-}
-
-
-.unit-mainFlexContainer {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  /* width: 100%;
-  max-width: 1000px;
-  margin: auto; */
+  height: 44px;
+  padding: 0 20px;
+  background-color: #fff;
+  position: relative;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.unit-mainTextContainer {
-  display: flex;
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  align-items: center;
-  max-width: var(--main-width);
-  /* width: 100%; */
-  margin: auto;
-  background-color: #818181;
-  /* padding: 20px; */
-}
+/* Logo */
+/* .logo svg {
+  width: 16px;
+  height: 18px;
+  fill: currentColor;
+} */
 
+/* 隐藏原来对 SVG 的样式（可选） */
+.logo svg { display: none; }
 
-
-
-.unit-flexImageWrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.unit-avatarContainer {
-  max-width: 10%;
-  min-width: 100px;
-  /* width: 100%; */
-
-  border-radius: 50%;
-  
-  aspect-ratio: 1;
-  object-fit: cover;;
-}
-
-
-
-
-
-
-    /* 重置部分样式 */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* 整体布局 */
-    body {
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      position: relative;
-      background: #333;
-      color: #fff;
-      padding: 0.5em 1em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    /* 菜单按钮样式（汉堡包图标） */
-    .menu-btn {
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .menu-btn span {
-      display: block;
-      height: 4px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-/* 导航栏：默认折叠，高度为0，隐藏溢出，准备过渡 */
-nav {
-  /* 已有 */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: #fa9696df;
-
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.5s ease-in-out;
-
-  display: flex;
-  flex-direction: column;
-
-  /* 确保内容在伪元素之上 */
-  z-index: 10000;
-}
-
-
-/* ========== 全屏背景伪元素 ========== */
-nav::before {
-  content: "";
-  position: fixed;     /* 固定在视口 */
-  top: 400px; left: 0;
-  right: 0; bottom: 0;
-  background: #f37c7c79;
-  z-index: 1;          /* 在 nav 内容下方 */
-}
-
-nav.open::before {
+/* 新增你的 logo 大小和样式 */
+.logo-img {
   display: block;
+  width: 100px;    /* 根据实际需要设定宽度 */
+  height: auto;    /* 保持纵横比 */
+  object-fit: contain;
 }
-nav:not(.open)::before {
-  display: none;
+
+
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
 }
-
-
-
-/* 导航链接样式保持不变 */
-nav a {
-  padding: 0.75em 1em;
-  color: #fff;
+.nav-item {
+  position: relative;
+  font-size: 13px;
+  line-height: 1;
+}
+.nav-link, .dropdown a {
   text-decoration: none;
-  border-bottom: 1px solid #555;
+  color: #1d1d1f;
+  padding: 6px;
+  display: inline-block;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.nav-link:hover, .nav-link:focus,
+.dropdown a:hover, .dropdown a:focus {
+  color: #06c;
 }
 
-nav a:hover {
-  background: #918787;
-}
-
-/* 展开时，把 max-height 设成一个足够大的值 */
-nav.open {
-  /* 替换原来的 display:flex */
-  max-height: 100vh; /* 确保比实际内容高度大就行 */
-}
-
-/* “汉堡”按钮动效、媒体查询保持不变 */
-.menu-btn.open span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-.menu-btn.open span:nth-child(2) {
+/* Dropdown menu */
+.dropdown {
+  position: absolute;
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  min-width: 150px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
   opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
 }
-.menu-btn.open span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
+.nav-item:hover > .dropdown,
+.nav-item:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown li { 
+  list-style: none; 
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* background-color: #515186; */
+}
+.dropdown a { 
+  text-align: center;
+  padding: 8px 12px; 
+  /* background-color: #1d1d1f; */
 }
 
-@media (min-width: 768px) {
-  .menu-btn { display: none; }
-  nav {
-    position: static;
-    overflow: visible !important;    /* 桌面端取消 overflow:hidden */
-    max-height: none !important;     /* 取消 max-height 限制 */
-    display: flex !important;
-    flex-direction: row;
-    background: transparent;
+/* Hamburger / mobile toggle */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 2px;
+  background: #1d1d1f;
+  border-radius: 1px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* 打开状态下，两条线分别旋转 */
+.hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] span:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
   }
-  nav a {
-    border: none;
-    padding: 0 1em;
-  }
+  .nav-links.open { max-height: 400px; }
+  .nav-item { width: 100%; text-align: center; }
+  .dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
+  .nav-item.open > .dropdown { max-height: 300px; }
 }
