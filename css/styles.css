@@ -132,11 +132,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
     flex-direction: column;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.6s ease;
+    transition: max-height 1.2s ease;
   }
-  .nav-links.open { max-height: 400px; }
-  .nav-item { width: 100%; text-align: center; }
-  .dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
+  .nav-links.open { 
+    max-height: 800px; 
+  }
+  .nav-item { 
+    width: 100%; 
+    text-align: left; 
+  }
+  .dropdown { 
+    position: static; 
+    opacity: 1; 
+    visibility: visible; 
+    transform: none; 
+    box-shadow: none; 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.6s ease; 
+  }
   .nav-item.open > .dropdown { max-height: 300px; }
   .navbar { justify-content: space-between; }
 }
