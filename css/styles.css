@@ -5,7 +5,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 /* Navbar container */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   height: 44px;
   padding: 0 20px;
@@ -46,6 +46,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   position: relative;
   font-size: 13px;
   line-height: 1;
+  padding: 0 10px;
 }
 .nav-link, .dropdown a {
   text-decoration: none;
@@ -137,4 +138,5 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   .nav-item { width: 100%; text-align: center; }
   .dropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; max-height: 0; overflow: hidden; transition: max-height 0.6s ease; }
   .nav-item.open > .dropdown { max-height: 300px; }
+  .navbar { justify-content: space-between; }
 }
