@@ -9,10 +9,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   align-items: center;
   height: 44px;
   padding: 0 20px;
-  background-color: #fff;
+  background-color: #f1f1f1;
   position: relative;
   z-index: 1000;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Logo */
