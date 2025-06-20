@@ -16,11 +16,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 }
 
 /* Logo */
-/* .logo svg {
-  width: 16px;
-  height: 18px;
-  fill: currentColor;
-} */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* 隐藏原来对 SVG 的样式（可选） */
 .logo svg { display: none; }
@@ -67,20 +67,40 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   gap: 16px;  /* 你想要的间距 */
 }
 
+/* Overlay blur under menu */
+.nav-overlay { 
+  position: fixed; 
+  top: 44px; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  backdrop-filter: blur(10px); 
+  background: rgba(255,255,255,0.3); 
+  opacity: 0; 
+  visibility: hidden; 
+  transition: opacity 0.5s ease; 
+  z-index: 0; 
+}
+.nav-overlay.open { 
+  opacity: 1; 
+  visibility: visible; 
+}
+
 /* Dropdown menu */
 .dropdown {
   position: absolute;
-  top: 44px;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background: #fff;
+  background: #f1f1f1;
   min-width: 150px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  /* box-shadow: 0 4px 16px rgba(0,0,0,0.1); */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.5s ease;
   white-space: nowrap;
 }
+
 .nav-item:hover > .dropdown,
 .nav-item:focus-within > .dropdown {
   opacity: 1;
@@ -132,24 +152,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links {
-    position: absolute;
-    top: 44px;
+    position: fixed;
+    margin-top: 44px;
+    top: 0;
     left: 0;
     right: 0;
-    background: #fff;
+    bottom: 0;
+    background: #f1f1f1;
     flex-direction: column;
     max-height: 0;
-    overflow: hidden;
+    overflow: auto;
     transition: max-height 1.2s ease;
   }
   .nav-links.open { 
-    max-height: 800px; 
+    max-height: 100vh; 
   }
   .nav-item { 
     width: 100%; 
     text-align: left; 
   }
-  .dropdown { 
+  /* .dropdown { 
     position: static; 
     opacity: 1; 
     visibility: visible; 
@@ -158,7 +180,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
     max-height: 0; 
     overflow: hidden; 
     transition: max-height 0.6s ease; 
+  } */
+
+  .dropdown {
+    display: none !important;
+    /* 干脆移除它占的空间 */
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
+
   .nav-item.open > .dropdown { max-height: 300px; }
   .navbar { justify-content: space-between; }
 }

@@ -30,6 +30,7 @@
     </a>
 
 
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <ul class="nav-links" id="navLinks">
       <li class="nav-item">
@@ -90,17 +91,21 @@
     
   </header>
 
+  <main>
+  </main>
   
   
   <script>
     const hamburger = document.getElementById('hamburgerBtn');
     const navLinks = document.getElementById('navLinks');
     const items = document.querySelectorAll('.nav-item');
+    const navOverlay = document.getElementById('navOverlay');
 
     hamburger.addEventListener('click', () => {
       const expanded = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', String(!expanded));
       navLinks.classList.toggle('open');
+      navOverlay.classList.toggle('open');
     });
 
     items.forEach(item => {
@@ -117,11 +122,23 @@
       }
     });
 
+    navOverlay.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('open');
+      navOverlay.classList.remove('open');
+      items.forEach(i => {
+        i.classList.remove('open');
+        const l = i.querySelector('.nav-link');
+        if (l) l.setAttribute('aria-expanded', 'false');
+      });
+    });
+
     document.addEventListener('click', e => {
       if (window.innerWidth <= 768) {
         if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
           hamburger.setAttribute('aria-expanded', 'false');
           navLinks.classList.remove('open');
+          navOverlay.classList.remove('open');
           items.forEach(i => {
             i.classList.remove('open');
             const l = i.querySelector('.nav-link');
