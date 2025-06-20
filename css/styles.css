@@ -8,7 +8,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   justify-content: center;
   align-items: center;
   height: 44px;
-  padding: 0 20px;
+  padding: 0 20px auto;
   background-color: #f1f1f1;
   position: relative;
   z-index: 1000;
@@ -61,6 +61,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   color: #06c;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;  /* 你想要的间距 */
+}
+
 /* Dropdown menu */
 .dropdown {
   position: absolute;
@@ -96,6 +102,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 /* Hamburger / mobile toggle */
 .hamburger {
   display: none;
+  flex: 0 0 auto;
   flex-direction: column;
   justify-content: space-between;
   width: 20px;
@@ -103,6 +110,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   background: none;
   border: none;
   cursor: pointer;
+  margin-right: 20px;
 }
 .hamburger span {
   display: block;
