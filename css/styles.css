@@ -7,7 +7,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44px;
+  height: 48px;
   padding: 0 20px auto;
   background-color: #f1f1f1;
   position: relative;
@@ -70,7 +70,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 /* Overlay blur under menu */
 .nav-overlay { 
   position: fixed; 
-  top: 44px; 
+  top: 48px; 
   left: 0; 
   right: 0; 
   bottom: 0; 
@@ -81,6 +81,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
   transition: opacity 0.5s ease; 
   z-index: 0; 
 }
+
 .nav-overlay.open { 
   opacity: 1; 
   visibility: visible; 
@@ -134,7 +135,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 }
 .hamburger span {
   display: block;
-  height: 2px;
+  height: 1.3px;
   background: #1d1d1f;
   border-radius: 1px;
   transition: transform 0.6s ease, opacity 0.6s ease;
