@@ -28,9 +28,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI"
 /* 新增你的 logo 大小和样式 */
 .logo-img {
   display: block;
-  width: 100px;    /* 根据实际需要设定宽度 */
+  width: 40px;    /* 根据实际需要设定宽度 */
   height: auto;    /* 保持纵横比 */
   object-fit: contain;
+  border-radius: 50%; /* 可选：使 logo 圆形 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 可选：添加阴影 */
+  aspect-ratio: 1 / 1; /* 确保 logo 保持正方形 */
 }
 
 
