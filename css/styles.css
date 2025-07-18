@@ -93,6 +93,13 @@ body {
   color: #333;
 }
 
+.earth_style .earth_list {
+  list-style: filled disc; /* 使用实心圆点 */
+  padding-left: 20px; /* 去掉左侧内边距 */
+  padding-top: 10px; /* 去掉顶部内边距 */
+  padding-bottom: 15px; /* 去掉底部内边距 */
+}
+
 .earth_style img,
 .earth_style iframe,
 .earth_style canvas,
