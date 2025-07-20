@@ -27,6 +27,8 @@
 
 
 <body>
+  <div id="page-indicator" class="page-indicator"></div>
+
   <header class="navbar">
     <a href="#" class="logo" aria-label="Logo">
       <img src="./src/logo.JPG" alt="Logo" class="logo-img">
@@ -34,6 +36,7 @@
 
 
     <div class="nav-overlay" id="navOverlay"></div>
+
 
     <ul class="nav-links" id="navLinks">
       <li class="nav-item">
@@ -97,35 +100,7 @@
   <main>
     <section class="row-section">
       <div class="earth_style">
-        <h1 class="earth_title">Title</h1>
-        <p class="earth_description">
-          I'm Li Yihai, currently pursuing a Postgraduate Degree in <a href="https://www.maths.tcd.ie/postgraduate/masters/">High Performance Computing</a> at 
-          <a href="https://www.tcd.ie/">Trinity College Dublin</a>. 
-          <br><br>
-          The teaching assistant of modules 
-          <a href="https://www.maths.tcd.ie/undergraduate/modules/MAU11E01.php">MAU11E01-Engineering Mathematics-202324</a>, 
-          <a href="https://www.maths.tcd.ie/undergraduate/modules/MAU22C00.php1">MAU22C00-Discrete Mathematics-202324</a>, 
-          <a href="https://www.maths.tcd.ie/undergraduate/modules/MAU11S01.php">MAU11S01-Mathematics for Scientists-202324</a>.
-          Previously, I earned a Bachelor's Degree in Mathematics and Applied Mathematics from 
-          the Mathematics Institute at ShanXi University in 2020, graduating with a GPA of 86.07/100. 
-          I have engaged in research work in PA ST 806: Deep Learning with 
-          <a href="https://seas.harvard.edu/person/pavlos-protopapas">Professor Pavlos Protopapas</a>'s team for three months in 2021.
-        
-          <br><br>
-
-          At present, I am dedicating myself to various research fields, 
-          including further honing my mathematical skills and coding proficiency in projects related to artificial intelligence.
-          As I continuously strive to improve as a learner, I am also endeavoring to become a better teacher, 
-          believing that teaching and communicating are fundamental to the process of self-improvement.
-        </p>
-        <!-- <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=e9ffcb&w=a&t=n&d=zteC3iWsvcSa9Y1pdUNsl40C7ibJgeXwwD3qLxK4Etg&co=0291f7'></script> -->
-        <!-- <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=zteC3iWsvcSa9Y1pdUNsl40C7ibJgeXwwD3qLxK4Etg"></script> -->
-      </div>
-    </section>
-
-    <section class="row-section">
-      <div class="earth_style">
-        <h1 class="earth_title">Title</h1>
+        <h1 class="earth_title">Welcome!</h1>
         <p class="earth_description">
           I'm Li Yihai, currently pursuing a Postgraduate Degree in <a href="https://www.maths.tcd.ie/postgraduate/masters/">High Performance Computing</a> at 
           <a href="https://www.tcd.ie/">Trinity College Dublin</a>. 
@@ -259,7 +234,29 @@
         }
       }
     });
+
+
+    const indicator = document.getElementById('page-indicator');
+    let inside = false;
+
+    // 当鼠标进入整个导航区域时，允许指示器出场
+    navLinks.addEventListener('mouseenter', () => inside = true);
+    navLinks.addEventListener('mouseleave', () => {
+      inside = false; // 隐藏指示器
+      indicator.style.height = '0';
+    });
+
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        if (!inside) return;
+        const link = item.querySelector('.nav-link');
+        
+        const rect = link.getBoundingClientRect();
+        indicator.style.height = 100 + 'vh';
+      });
+    });    
   </script>
+
 </body>
 
 

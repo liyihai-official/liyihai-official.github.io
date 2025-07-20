@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 /* Reset & Base */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -6,6 +11,8 @@
   --secondary-color: #f1f1f1; /* Secondary color for backgrounds */
   --text-color: #1d1d1f; /* Main text color */
   --background-color: #ffffff; /* Main background color */
+  --primary-bg-color: rgba(255, 255, 255, 0.2);
+  --nav-height: 48px; /* Height of the navbar */
 }
 
 body { 
@@ -14,18 +21,31 @@ body {
   background-color: var(--background-color);
 }
 
+
+
 /* Navbar container */
 .navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 48px;
+  height: var(--nav-height);
   padding: 0 20px auto;
   background-color: var(--secondary-color);
-  position: relative;
+  position: sticky;
+  top: 0;
+  width: 100%;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* 半透明白色背景，数字根据需求调节透明度 */
+  background: var(--primary-bg-color);
+
+  /* 玻璃背后的内容做模糊 */
+  backdrop-filter:          blur(10px);
+  -webkit-backdrop-filter:  blur(10px);  
 }
+
+
 
 /* Logo */
 .logo {
@@ -128,7 +148,7 @@ body {
 @media (max-width: 600px) {
   .earth_style {
     padding: 1rem;
-    margin: 10rem auto;
+    margin: 0.5rem auto;
   }
   .earth_style .earth_title {
     font-size: 1.5rem;
@@ -141,13 +161,16 @@ body {
   align-items: center;
   gap: 20px;
   list-style: none;
+  position: relative;
 }
+
 .nav-item {
   position: relative;
   font-size: 13px;
   line-height: 1;
   padding: 0 10px;
 }
+
 .nav-link, .dropdown a {
   text-decoration: none;
   color: #1d1d1f;
@@ -156,6 +179,26 @@ body {
   transition: color 0.2s;
   cursor: pointer;
 }
+
+.page-indicator {
+  position: fixed;
+  top: var(--nav-height); /* 确保在导航栏下方 */
+  left: 0;
+  width: 100vh;              /* 初始状态不显现 */
+  height: 0;           /* 铺满整个页面（受 html, body 100% 高度 约束） */
+
+  /* 半透明白色背景，数字根据需求调节透明度 */
+  background: var(--primary-bg-color);
+
+  /* 玻璃背后的内容做模糊 */
+  backdrop-filter:          blur(9px);
+  -webkit-backdrop-filter:  blur(9px); 
+
+  transition: middle 0.3s ease, height 0.3s ease;
+  z-index: 1;            /* 在所有内容下面 */
+  pointer-events: none;   /* 不拦截点击事件 */
+}
+
 .nav-link:hover, .nav-link:focus,
 .dropdown a:hover, .dropdown a:focus {
   color: #06c;
@@ -194,7 +237,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   background: var(--secondary-color);
-  min-width: 150px;
+  min-width: 100vw;
   /* box-shadow: 0 4px 16px rgba(0,0,0,0.1); */
   opacity: 0;
   visibility: hidden;
@@ -202,11 +245,9 @@ body {
   white-space: nowrap;
 }
 
-.nav-item:hover > .dropdown,
-.nav-item:focus-within > .dropdown {
-  opacity: 1;
-  visibility: visible;
-}
+
+
+
 .dropdown li { 
   list-style: none; 
   text-align: center;
@@ -258,6 +299,51 @@ body {
   background-color: var(--secondary-color);
 }
 
+/* @media (max-width: 600px) {
+  
+} */
+
+/* 3. 在 nav-item 下方创建一个宽度为 0 的伪元素 */
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;                      /* 初始从中间开始 */
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: all 0.3s ease;
+  transform: translateX(0%);
+}
+
+/* 4. hover 时，让伪元素宽度 100% */
+.nav-item:hover::after {
+  left: 0;                        /* 从左侧开始 */
+  width: 100%;
+}
+
+/* 5. 可选：同时改变文字颜色 */
+.nav-item:hover .nav-link {
+  color: var(--primary-color);
+}
+
+/* 6. 保证下拉菜单在顶部 hover 区域也能展开 */
+.nav-item.open .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-item:hover > .dropdown,
+.nav-item:focus-within > .dropdown {
+  opacity: 1;
+  visibility: visible;
+  background: var(--secondary-color);
+
+  /* 玻璃背后的内容做模糊 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);  
+}
 
 /* Responsive */
 @media (max-width: 768px) {
