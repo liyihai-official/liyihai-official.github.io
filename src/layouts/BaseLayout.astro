@@ -1,0 +1,65 @@
+---
+const { title = "Fancy CV", description = "Portfolio & Resume", image = "/og-default.png", lang = "en" } = Astro.props;
+import "../styles/global.css";     // Tailwind 入口
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta name="theme-color" content="#0b0b11" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <script>
+      // Theme no-FOUC
+      (function () {
+        try {
+          const t = localStorage.getItem('theme');
+          if (t === 'dark') document.documentElement.classList.add('dark');
+          else if (t === 'light') document.documentElement.classList.remove('dark');
+          else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-[var(--bg)] text-black dark:text-[var(--text)] relative">
+    <canvas id="cursor-trail" class="pointer-events-none fixed inset-0 z-50"></canvas>
+    <div class="pointer-events-none fixed inset-0 bg-animated opacity-60"></div>
+    <slot />
+    <script>
+      // Reveal on scroll
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach((e)=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      // Magnetic hover
+      const strength = 1; // px
+      document.addEventListener('pointermove', (e)=>{
+        document.querySelectorAll('[data-magnet]').forEach((el)=>{
+          const r = el.getBoundingClientRect();
+          const cx = r.left + r.width/2, cy = r.top + r.height/2;
+          const dx = e.clientX - cx, dy = e.clientY - cy;
+          const dist = Math.hypot(dx, dy);
+          const max = Math.max(r.width, r.height) * 1.25;
+          const pull = Math.max(0, 1 - dist / max);
+          const tx = (dx / (r.width)) * strength * pull;
+          const ty = (dy / (r.height)) * strength * pull;
+          el.style.transform = `translate(${tx.toFixed(2)}px, ${ty.toFixed(2)}px)`;
+        });
+      }, { passive: true });
+      document.addEventListener('pointerleave', ()=>{
+        document.querySelectorAll('[data-magnet]').forEach(el=>{ el.style.transform = 'translate(0,0)'; });
+      }, true);
+
+
+    </script>
+  </body>
+</html>

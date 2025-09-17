@@ -1,0 +1,40 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import ScrollProgress from "./ScrollProgress.astro";
+import { otherLang } from "@/i18n";
+const { t, lang } = Astro.props;
+const links = [
+  { href: `/${lang}/#experience`, label: t.nav.experience },
+  { href: `/${lang}/projects`, label: t.nav.projects },
+  { href: `/${lang}/skills`, label: t.nav.skills },
+  { href: `/${lang}/#contact`, label: t.nav.contact },
+];
+---
+
+
+<ScrollProgress />
+<header class="sticky top-0 z-50 border-b border-black/10 dark:border-white/0">
+  <div class="container-pro py-2">
+    <div class="glass-nav">
+
+      <div class="flex items-center justify-between px-3 py-2">
+        <a href={`/${lang}/`} class="flex items-center gap-3">
+          <div class="h-9 w-9 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center">
+            <span class="text-brand font-extrabold">{t.title}</span>
+          </div>
+          <span class="font-semibold tracking-wide">{t.name}</span>
+        </a>
+        <nav class="flex items-center space-x-4 text-sm text-black/80 dark:text-white/80">
+          <a href={`/${otherLang(lang)}/`} class="px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
+            {otherLang(lang).toUpperCase()}
+          </a>
+          {links.map(l => (
+            <a href={l.href} class="hover:text-black dark:hover:text-white transition-colors">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

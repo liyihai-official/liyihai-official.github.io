@@ -1,0 +1,63 @@
+---
+export const getStaticPaths = () => ([
+  { params: { lang: 'en' } },
+  { params: { lang: 'zh' } }
+]);
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Nav from "@/components/Nav.astro";
+import Hero from "@/components/Hero.astro";
+import Section from "@/components/Section.astro";
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Footer from "@/components/Footer.astro";
+
+import { t as getT, validLang } from "@/i18n";
+import { experiences, heroCtas } from "@/data/resume";
+import { getCollection } from "astro:content";
+
+const { lang } = Astro.params;
+const langSafe = validLang(lang) ? lang : 'en';
+const t = getT(langSafe);
+const projects = (await getCollection('projects', ({ data }) => data.lang === langSafe)).slice(0, 4);
+---
+<BaseLayout title={`${t.name} CV`} description="A high-end Astro resume template" lang={langSafe}>
+  <Nav t={t} lang={langSafe} />
+  
+  <Hero
+    t={t}
+    ctas={[
+      { href: '/CV.pdf', label: 'Download CV', primary: true },
+      { href: `/${lang}/#contact`, label: 'Contact' },
+    ]}
+    bio={t.bio}
+    avatar={t.avatar}
+  />
+
+  <Section id="experience" title={t.sections.experience.title} subtitle={t.sections.experience.subtitle}>
+    <div class="timeline">
+      {experiences.map((e) => <ExperienceItem {...e} />)}
+    </div>
+  </Section>
+
+  <Section id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      {projects.map((p) => <ProjectCard title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link || '#'} repo={p.data.repo} />)}
+    </div>
+  </Section>
+
+  <Section id="contact" title={t.sections.contact.title} subtitle={t.sections.contact.subtitle}>
+    <div class="glass p-8 md:p-10 reveal">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h3 class="text-2xl font-bold">Let’s build something ambitious.</h3>
+          <p class="text-black/70 dark:text-white/70 mt-2">Email me at <a class="underline" href="mailto:you@example.com">you@example.com</a>.</p>
+        </div>
+        <a href="mailto:you@example.com" class="btn btn-primary">
+          {t.sections.contact.cta}
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  <Footer lang={langSafe} />
+</BaseLayout>
