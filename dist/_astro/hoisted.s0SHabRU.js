@@ -1,0 +1,1 @@
+import"./hoisted.xK5Ogj-_.js";const c=document.getElementById("tags-filter");c?.addEventListener("click",o=>{const t=o.target.closest("button[data-tag]");if(!t)return;const e=t.getAttribute("data-tag");document.querySelectorAll("[data-project]").forEach(a=>{const n=(a.getAttribute("data-tags")||"").split(","),s=e==="__all"||n.includes(e);a.style.display=s?"":"none"})});

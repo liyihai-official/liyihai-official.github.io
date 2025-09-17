@@ -1,13 +1,17 @@
 ---
+// export async function getStaticPaths() {
+//   const { getCollection } = await import('astro:content');
+//   const langs = ['en','zh'];
+//   const all = await Promise.all(langs.map(async (l) => {
+//     const posts = await getCollection('blog', ({ data }) => data.lang === l);
+//     return posts.map((p) => ({ params: { lang: l, slug: p.slug } }));
+//   }));
+//   return { params: all.flat().map(p => p.params) };
+// }
 export async function getStaticPaths() {
-  const { getCollection } = await import('astro:content');
-  const langs = ['en','zh'];
-  const all = await Promise.all(langs.map(async (l) => {
-    const posts = await getCollection('blog', ({ data }) => data.lang === l);
-    return posts.map((p) => ({ params: { lang: l, slug: p.slug } }));
-  }));
-  return { params: all.flat().map(p => p.params) };
+  return []; // 不生成任何博客页面
 }
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
@@ -26,6 +30,7 @@ if (!entry) {
 const { Content } = await entry.render();
 const headings = await entry.getHeadings();
 ---
+
 <BaseLayout title={`${entry.data.title} — ${t.name}`} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
   <main class="container-pro py-10 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
