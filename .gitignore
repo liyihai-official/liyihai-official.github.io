@@ -1,0 +1,15 @@
+.gitignore
+.DS_Store
+.vscode/
+*.log
+sourc_files/
+
+# deps & builds
+node_modules/
+dist/
+.astro/
+.vite/
+.cache/
+
+# misc
+.DS_Store
