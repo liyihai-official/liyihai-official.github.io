@@ -1,5 +1,5 @@
 ---
-const defaultLang = 'en';               // ← 改成你的默认语言：'zh' / 'en'
+const defaultLang = 'en';
 const target = `/${defaultLang}/`;
 ---
 <!doctype html>
@@ -8,7 +8,6 @@ const target = `/${defaultLang}/`;
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content={`0;url=${target}`} />
     <title>Redirecting…</title>
-    <script>location.replace({JSON.stringify(target)});</script>
     <meta name="robots" content="noindex" />
   </head>
   <body></body>

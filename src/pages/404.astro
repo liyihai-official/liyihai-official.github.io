@@ -1,5 +1,5 @@
 ---
-const defaultLang = 'en';               // 同上
+const defaultLang = 'en';              // 改为你的默认语言
 const target = `/${defaultLang}/`;
 ---
 <!doctype html>
@@ -8,10 +8,7 @@ const target = `/${defaultLang}/`;
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content={`0;url=${target}`} />
     <title>Not Found — Redirecting…</title>
-    <script>location.replace({JSON.stringify(target)});</script>
-    <style>body{font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto}</style>
+    <meta name="robots" content="noindex" />
   </head>
-  <body>
-    <p>Redirecting to <a href={target}>{target}</a> …</p>
-  </body>
+  <body></body>
 </html>
