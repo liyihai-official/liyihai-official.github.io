@@ -15,7 +15,7 @@ const {
 
   <div class="container-pro relative pt-6 pb-10">
     <!-- 用 glass-nav 作为矩形磨砂容器（替代原来的 class="glass ..."） -->
-    <div class="glass-nav p-8 md:p-12 reveal">
+    <div class="glass-nav p-8 md:p-12 reveal text-black dark:text-white">
       <!-- 两栏布局：左文案右头像；移动端上下堆叠 -->
       <div class="grid items-center gap-8 md:grid-cols-[1fr_1.8fr]">
         <!-- 头像区 -->
@@ -23,7 +23,7 @@ const {
           <img
             src={`${t.avatar}`}
             alt={`${t.name} avatar`}
-            class="w-full h-full rounded-full object-cover ring-1 ring-white/30 dark:ring-white/20 shadow-[0_10px_30px_rgba(0,0,0,.25)]"
+            class="w-full h-full rounded-full object-cover ring-1 ring-black/10 dark:ring-white/20 shadow-[0_10px_30px_rgba(0,0,0,.25)]"
             loading="lazy"
             decoding="async"
           />
@@ -38,17 +38,25 @@ const {
         <!-- 文案区 -->
         <div>
           <div class="mt-1 flex flex-wrap gap-7">
-            <h1 class="mt-2 text-3xl md:text-5xl font-bold leading-tight tracking-tight bg-clip-text text-white bg-gradient-to-r from-brand to-[var(--accent)]">
+            <h1 class="mt-2 text-3xl md:text-5xl font-bold leading-tight tracking-tight bg-clip-text dark:text-white text-black bg-gradient-to-r from-brand to-[var(--accent)]">
               {t.name}
             </h1>
-            <span class="badge mt-3" data-magnet>{t.open_to}</span>
+            <span
+              class="badge mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium
+                    border bg-black/5 text-black border-black/10
+                    dark:bg-white/10 dark:text-white dark:border-white/10
+                    shadow-[inset_0_1px_0_rgba(255,255,255,.25)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,.08)]"
+              data-magnet
+            >
+              {t.open_to}
+            </span>
           </div>
 
           <!-- 打字机副标题（保留） -->
-          <p class="mt-3 text-xl md:text-2xl text-white/85 min-h-[2.2rem]" id="typed-subtitle" aria-live="polite"></p>
+          <p class="mt-3 text-xl md:text-2xl text-black/75 dark:text-white/85 min-h-[2.2rem]" id="typed-subtitle" aria-live="polite"></p>
 
           <!-- 新增：简短自我介绍 -->
-          <p class="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
+          <p class="mt-4 text-base md:text-lg text-black/80 dark:text-white/85 leading-relaxed">
             {`${t.bio}`}
           </p>
 

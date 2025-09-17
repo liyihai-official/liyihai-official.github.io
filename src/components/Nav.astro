@@ -23,11 +23,16 @@ const links = [
             <span class="text-brand font-extrabold">{t.title}</span>
           </div>
           <span class="font-semibold tracking-wide">{t.name}</span>
+          <button id="theme-toggle" class="px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 transition-colors text-sm"> 
+            <span class="inline dark:hidden">🌙 Dark</span> <span class="hidden dark:inline">☀️ Light</span> 
+          </button>                            
         </a>
+        
+        
         <nav class="flex items-center space-x-4 text-sm text-black/80 dark:text-white/80">
           <a href={`/${otherLang(lang)}/`} class="px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
             {otherLang(lang).toUpperCase()}
-          </a>
+          </a>          
           {links.map(l => (
             <a href={l.href} class="hover:text-black dark:hover:text-white transition-colors">
               {l.label}
@@ -37,4 +42,6 @@ const links = [
       </div>
     </div>
   </div>
+
+<script> (function(){ const KEY = 'theme'; const root = document.documentElement; function set(theme){ if(theme==='dark'){root.classList.add('dark');} else {root.classList.remove('dark');} localStorage.setItem(KEY, theme); } function get(){ const t = localStorage.getItem(KEY); return (t==='dark'||t==='light')?t:null; } if(!get()){ set(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } const btn = document.getElementById('theme-toggle'); btn?.addEventListener('click', ()=>{ const now = root.classList.contains('dark') ? 'dark' : 'light'; set(now === 'dark' ? 'light' : 'dark'); }); })(); </script>  
 </header>
