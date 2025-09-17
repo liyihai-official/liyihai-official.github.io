@@ -1,0 +1,32 @@
+---
+export const getStaticPaths = () => ([
+  { params: { lang: 'en' } },
+  { params: { lang: 'zh' } }
+]);
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Nav from "@/components/Nav.astro";
+import Section from "@/components/Section.astro";
+import Footer from "@/components/Footer.astro";
+import { t as getT, validLang } from "@/i18n";
+import { getCollection } from 'astro:content';
+
+const { lang } = Astro.params;
+const langSafe = validLang(lang) ? lang : 'en';
+const t = getT(langSafe);
+const posts = await getCollection('blog', ({ data }) => data.lang === langSafe);
+---
+<BaseLayout title={`${t.name} — Blog`} lang={langSafe}>
+  <Nav t={t} lang={langSafe} />
+  <Section id="blog" title={t.sections.blog.title} subtitle={t.sections.blog.subtitle}>
+    <div class="grid gap-4">
+      {posts.sort((a,b)=> a.data.date < b.data.date ? 1 : -1).map((p) => (
+        <a href={`/${langSafe}/blog/${p.slug}`} class="glass p-6 md:p-8 card-hover">
+          <h3 class="text-xl font-bold">{p.data.title}</h3>
+          {p.data.description && <p class="text-black/70 dark:text-white/70 mt-2">{p.data.description}</p>}
+          <p class="text-sm text-black/60 dark:text-white/60 mt-3">{new Date(p.data.date).toDateString()}</p>
+        </a>
+      ))}
+    </div>
+  </Section>
+  <Footer lang={langSafe} />
+</BaseLayout>

@@ -1,24 +1,24 @@
 {
-  "name": "liyihai-official.github.io",
-  "version": "1.0.0",
-  "description": "My personal website.",
-  "main": "index.html",
+  "name": "astro-fancy-resume-i18n",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --port=8080 ."
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/liyihai-official/liyihai-official.github.io.git"
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@fontsource-variable/inter": "^5.0.19",
+    "@fontsource-variable/playfair-display": "^5.0.20",
+    "astro": "^4.13.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.17"
   },
-  "keywords": [
-    "Personal",
-    "Website"
-  ],
-  "author": "LI Yihai",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/liyihai-official/liyihai-official.github.io/issues"
-  },
-  "homepage": "https://github.com/liyihai-official/liyihai-official.github.io#readme"
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
 }
