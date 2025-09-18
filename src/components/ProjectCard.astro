@@ -1,6 +1,11 @@
 ---
-const { title, description, tags = [], link, repo } = Astro.props;
+const { 
+  title, 
+  description, 
+  tags = [], link, repo 
+} = Astro.props;
 ---
+
 <a href={link} class="block glass p-6 md:p-8 card-hover group project-card reveal" data-project data-tags={tags.join(',')} target="_blank" rel="noreferrer noopener">
   <div class="project-tilt">
     <div class="flex items-start justify-between gap-4">

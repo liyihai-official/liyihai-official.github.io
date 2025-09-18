@@ -38,7 +38,7 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
   </Section>
 
   <Section id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>
-    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+    <div class="grid md:grid-cols-1 gap-6 md:gap-8">
       {projects.map((p) => <ProjectCard title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link || '#'} repo={p.data.repo} />)}
     </div>
   </Section>
@@ -47,7 +47,7 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     <div class="glass p-8 md:p-10 reveal">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h3 class="text-2xl font-bold">Let’s build something ambitious.</h3>
+          <h3 class="text-2xl font-bold">Let's build something ambitious.</h3>
           <p class="text-black/70 dark:text-white/70 mt-2">Email me at <a class="underline" href="mailto:you@example.com">you@example.com</a>.</p>
         </div>
         <a href="mailto:you@example.com" class="btn btn-primary">
