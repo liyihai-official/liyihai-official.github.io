@@ -11,6 +11,9 @@ const { title, description, tags = [], link, repo } = Astro.props;
     <div class="mt-4 flex flex-wrap gap-2">
       {tags.map((t) => <span class="badge">{t}</span>)}
     </div>
-    {repo && <p class="mt-4 text-sm text-black/60 dark:text-white/60">Code: <a href={repo} class="underline hover:text-black dark:hover:text-white">{repo}</a></p>}
+    {repo && <p class="mt-4 text-sm text-black/60 dark:text-white/60">
+      Code: {repo}
+      {/* <a href={repo} class="underline hover:text-black dark:hover:text-white">{repo}</a> */}
+    </p>}
   </div>
 </a>
