@@ -1,7 +1,7 @@
 export default {
   title: "CV",
   name: "LI Yihai",
-  bio: "Hi! I'm focusing on parallel & distributed computing, GPU acceleration, and physics-informed PDE solvers. Previously a TA for Engineering Mathematics and Discrete Mathematics.",
+  bio: "Hi! I'm focusing on parallel & distributed computing, GPU acceleration, and physics-informed PDE solvers. Previously a TA for Engineering Mathematics and Discrete Mathematics at Trinity College Dublin.",
   avatar: "/images/avatar.png",
   tagline: "High-Performance Computing & Scientific ML",
   open_to: "Open to PhD & Roles",

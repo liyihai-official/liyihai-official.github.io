@@ -1,0 +1,17 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+import type { ExperienceGroup } from "@/data/resume";
+
+const { groups = [] as ExperienceGroup[] } = Astro.props;
+---
+
+<section id="experience" class="space-y-10">
+  {groups.map((g) => (
+    <>
+      <h2 class="text-xl md:text-2xl font-bold text-black dark:text-white">{g.title}</h2>
+      <div class="grid gap-6">
+        {g.items.map((it) => <ExperienceItem {...it} />)}
+      </div>
+    </>
+  ))}
+</section>

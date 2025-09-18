@@ -12,7 +12,8 @@ import ProjectCard from "@/components/ProjectCard.astro";
 import Footer from "@/components/Footer.astro";
 
 import { t as getT, validLang } from "@/i18n";
-import { experiences, heroCtas } from "@/data/resume";
+import ExperienceList from "@/components/ExperienceList.astro";
+import { experienceGroups } from "@/data/resume";
 import { getCollection } from "astro:content";
 
 const { lang } = Astro.params;
@@ -34,9 +35,7 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
   />
 
   <Section id="experience" title={t.sections.experience.title} subtitle={t.sections.experience.subtitle}>
-    <div class="timeline">
-      {experiences.map((e) => <ExperienceItem {...e} />)}
-    </div>
+    <ExperienceList groups={experienceGroups(langSafe)} />
   </Section>
 
   <Section id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>

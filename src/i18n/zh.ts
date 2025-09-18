@@ -1,7 +1,7 @@
 export default {
   title: "简历",
   name: "李艺海",
-  bio: "你好！我专注于并行与分布式计算、GPU加速以及物理信息PDE求解器。曾担任工程数学与离散数学的助教。",
+  bio: "你好！我专注于并行与分布式计算、GPU加速以及物理信息PDE求解器。曾与圣三一都柏林大学担任工程数学与离散数学的助教。",
   avatar: "/images/avatar.png",  
   tagline: "高性能计算 & 科学机器学习",
   open_to: "开放博士与合作机会",

@@ -1,14 +1,20 @@
 ---
 const { role, company, period, location, bullets = [] } = Astro.props;
+
+import { renderInlineMath } from "@/utils/katex.min";  
 ---
+
+
 <article class="timeline-item glass p-6 md:p-8 card-hover reveal">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h3 class="text-xl md:text-2xl font-bold">{role} 
+    <h3 class="text-l md:text-xl font-bold">{role} 
       <span class="text-black/60 dark:text-white/60">@ {company}</span>
     </h3>
     <span class="text-black/60 dark:text-white/60 text-sm">{period} • {location}</span>
   </div>
   <ul class="mt-4 space-y-2 list-disc list-inside text-black/85 dark:text-white/85">
-    {bullets.map((b) => <li>{b}</li>)}
+    {bullets.map((b) => 
+      <li set:html={renderInlineMath(b)} />
+    )}
   </ul>
 </article>

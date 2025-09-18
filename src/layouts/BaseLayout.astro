@@ -1,6 +1,14 @@
 ---
-const { title = "Fancy CV", description = "Portfolio & Resume", image = "/og-default.png", lang = "en" } = Astro.props;
-import "../styles/global.css";     // Tailwind 入口
+const { 
+  title = "CV", 
+  description = "Portfolio & Resume", 
+  image = "/og-default.png", 
+  lang = "en" 
+} = Astro.props;
+
+import "../styles/global.css";     // Tailwind
+import "katex/dist/katex.min.css"; // KaTeX
+
 ---
 <!doctype html>
 <html lang={lang}>
