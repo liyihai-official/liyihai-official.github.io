@@ -1,47 +1,112 @@
 ---
-import ThemeToggle from "./ThemeToggle.astro";
 import ScrollProgress from "./ScrollProgress.astro";
 import { otherLang } from "@/i18n";
 const { t, lang } = Astro.props;
 const links = [
   { href: `/${lang}/#experience`, label: t.nav.experience },
-  { href: `/${lang}/projects`, label: t.nav.projects },
-  { href: `/${lang}/skills`, label: t.nav.skills },
-  { href: `/${lang}/#contact`, label: t.nav.contact },
+  { href: `/${lang}/projects`,    label: t.nav.projects   },
+  { href: `/${lang}/skills`,      label: t.nav.skills     },
+  { href: `/${lang}/#contact`,    label: t.nav.contact    },
 ];
 ---
-
 
 <ScrollProgress />
 <header class="sticky top-0 z-50 border-b border-black/10 dark:border-white/0">
   <div class="container-pro py-2">
     <div class="glass-nav">
-
       <div class="flex items-center justify-between px-3 py-2">
+        <!-- 左侧：Logo / 名称 -->
         <a href={`/${lang}/`} class="flex items-center gap-3">
           <div class="h-9 w-9 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center">
             <span class="text-brand font-extrabold">{t.title}</span>
           </div>
           <span class="font-semibold tracking-wide">{t.name}</span>
-          <button id="theme-toggle" class="px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 transition-colors text-sm"> 
-            <span class="inline dark:hidden">🌙 Dark</span> <span class="hidden dark:inline">☀️ Light</span> 
-          </button>                            
         </a>
-        
-        
-        <nav class="flex items-center space-x-4 text-sm text-black/80 dark:text-white/80">
+
+        <!-- 右侧：桌面导航 + 主题按钮 + 语言切换 -->
+        <div class="hidden md:flex items-center gap-4 text-sm text-black/80 dark:text-white/80">
           <a href={`/${otherLang(lang)}/`} class="px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
             {otherLang(lang).toUpperCase()}
-          </a>          
+          </a>
           {links.map(l => (
             <a href={l.href} class="hover:text-black dark:hover:text-white transition-colors">
               {l.label}
             </a>
           ))}
+          <!-- 主题切换（桌面可见） -->
+          <button id="theme-toggle" class="ml-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 transition-colors text-sm">
+            <span class="inline dark:hidden">🌙 Dark</span>
+            <span class="hidden dark:inline">☀️ Light</span>
+          </button>
+        </div>
+
+        <!-- 汉堡按钮（仅小屏显示） -->
+        <button
+          id="menu-toggle"
+          class="md:hidden inline-flex items-center justify-center rounded-lg px-2 py-1.5 border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20"
+          aria-label="Toggle menu"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <!-- 简单汉堡图标 -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- 移动端下拉菜单 -->
+      <div id="mobile-menu" class="md:hidden hidden border-t border-white/10 px-3 pb-3">
+        <nav class="flex flex-col gap-3 pt-3 text-sm text-black/80 dark:text-white/80">
+          <a href={`/${otherLang(lang)}/`} class="self-start px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
+            {otherLang(lang).toUpperCase()}
+          </a>
+          {links.map(l => (
+            <a href={l.href} class="px-2 py-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+              {l.label}
+            </a>
+          ))}
+
+          <!-- 主题切换（移动端单独放一份，避免滚动不到右上角） -->
+          <button id="theme-toggle-mobile" class="mt-2 inline-flex w-max items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 text-sm">
+            <span class="inline dark:hidden">🌙 Dark</span>
+            <span class="hidden dark:inline">☀️ Light</span>
+          </button>
         </nav>
       </div>
     </div>
   </div>
 
-<script> (function(){ const KEY = 'theme'; const root = document.documentElement; function set(theme){ if(theme==='dark'){root.classList.add('dark');} else {root.classList.remove('dark');} localStorage.setItem(KEY, theme); } function get(){ const t = localStorage.getItem(KEY); return (t==='dark'||t==='light')?t:null; } if(!get()){ set(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } const btn = document.getElementById('theme-toggle'); btn?.addEventListener('click', ()=>{ const now = root.classList.contains('dark') ? 'dark' : 'light'; set(now === 'dark' ? 'light' : 'dark'); }); })(); </script>  
+  <!-- 脚本：主题切换 + 菜单开关（无依赖、可并存） -->
+  <script is:inline>
+    // === 主题切换（桌面+移动） ===
+    (function(){
+      const KEY = 'theme';
+      const root = document.documentElement;
+      const set = (theme) => { theme==='dark' ? root.classList.add('dark') : root.classList.remove('dark'); localStorage.setItem(KEY, theme); };
+      const get = () => (localStorage.getItem(KEY)==='dark' ? 'dark' : (localStorage.getItem(KEY)==='light' ? 'light' : null));
+      if(!get()){ set(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+      const bind = (id) => document.getElementById(id)?.addEventListener('click', ()=>{
+        const now = root.classList.contains('dark') ? 'dark' : 'light';
+        set(now === 'dark' ? 'light' : 'dark');
+      });
+      bind('theme-toggle');
+      bind('theme-toggle-mobile');
+    })();
+
+    // === 移动端菜单折叠 ===
+    (function(){
+      const btn = document.getElementById('menu-toggle');
+      const panel = document.getElementById('mobile-menu');
+      if(!btn || !panel) return;
+      btn.addEventListener('click', ()=>{
+        const open = panel.classList.toggle('hidden') ? false : true;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      // 点击菜单项后自动收起
+      panel.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', ()=>{ panel.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); });
+      });
+    })();
+  </script>
 </header>
