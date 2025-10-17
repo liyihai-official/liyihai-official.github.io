@@ -23,6 +23,21 @@
            ring-1 ring-black/10 dark:ring-white/20
            hover:bg-black/5 dark:hover:bg-white/10;
   }  
+
+  .timeline-item {
+    @apply relative pl-8 md:pl-10 rounded-2xl
+           /* bg-white/80  */
+           /* backdrop-blur  */
+           border border-black/10 shadow-sm
+           text-gray-900
+           dark:bg-white/5 dark:border-white/10 dark:text-white/90;
+  }  
+
+  .timeline-item h3 { @apply text-gray-900 dark:text-white; }
+  .timeline-item .company { @apply text-gray-500 dark:text-white/60; }
+  .timeline-item .meta { @apply text-sm text-gray-500 dark:text-white/60; }
+  .timeline-item ul { @apply text-gray-800 dark:text-white/85 list-disc list-outside pl-5 mt-4 space-y-2; }
+
 }
 
 @layer utilities {
@@ -120,18 +135,18 @@ body {
 }
 .timeline-item {
   position: relative;
-  margin-bottom: 22px;
+  margin-bottom: 8px;
 }
-.timeline-item::before {
+/* .timeline-item::before {
   content: "";
   position: absolute;
-  left: -2px;
-  top: 8px;
+  left: 12px;
+  top: 42px;
   height: 10px; width: 10px;
   border-radius: 9999px;
   background: linear-gradient(90deg, var(--brand), var(--accent));
   box-shadow: 0 0 0 4px rgba(108,92,231,0.25);
-}
+} */
 
 /* Project grid enhancements */
 .project-card { transform-style: preserve-3d; perspective: 800px; }
