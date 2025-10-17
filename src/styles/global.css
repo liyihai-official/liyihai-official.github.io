@@ -17,6 +17,12 @@
   }
   .card-hover { @apply transition-transform duration-300 shadow-none; }
   .card-hover:hover { @apply -translate-y-1 shadow-elegant; }
+
+  .btn.btn-ghost { 
+    @apply text-gray-900 dark:text-white
+           ring-1 ring-black/10 dark:ring-white/20
+           hover:bg-black/5 dark:hover:bg-white/10;
+  }  
 }
 
 @layer utilities {

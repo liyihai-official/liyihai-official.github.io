@@ -4,6 +4,8 @@ const {
   ctas = [],
 } = Astro.props;
 ---
+
+
 <section class="relative overflow-hidden">
   <!-- Parallax decorative layers（保留） -->
   <div id="parallax-1" class="pointer-events-none absolute -top-24 -left-24 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-30"
@@ -63,7 +65,12 @@ const {
           <!-- CTA 按钮 -->
           <div class="mt-7 flex flex-wrap gap-3">
             {ctas.map((c) => (
-              <a href={c.href} class={`btn ${c.primary ? 'btn-primary' : 'btn-ghost'}`} data-magnet>{c.label}</a>
+              <a 
+              href={c.href} class={`btn ${
+                c.primary ? 'btn-primary' 
+                : 'btn-ghost ring-1 ring-black/10 dark:ring-white/20 text-gray-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10'
+                }`} 
+                data-magnet>{c.label}</a>
             ))}
           </div>
         </div>

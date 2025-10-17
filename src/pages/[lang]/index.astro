@@ -27,7 +27,7 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     t={t}
     ctas={[
       { href: '/CV.pdf', label: 'Download CV', primary: true },
-      { href: `/${lang}/#contact`, label: 'Contact' },
+      { href: `/${lang}/#contact`, label: 'Contact', primary: false},
     ]}
     bio={t.bio}
     avatar={t.avatar}
