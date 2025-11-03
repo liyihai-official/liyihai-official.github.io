@@ -2,6 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Fonts & variables */
+:root {
+  --bg: #0b0b11;
+  --panel: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
+  --text: #dadae5;
+  --muted: #B8B8C7;
+  --brand: #7168b7;
+  --accent: #A29BFE;
+  --success: #55efc4;
+  --danger: #ff7675;
+}
+
+html, body { @apply h-full; }
+body {
+  /* background:
+    radial-gradient(1200px 800px at 20% -10%, rgba(108,92,231,0.15), transparent 70%),
+    radial-gradient(1000px 900px at 120% 20%, rgba(255,118,117,0.10), transparent 70%),
+    var(--bg); */
+  @apply antialiased;
+  color: var(--text);
+}
+
+
+.bg-animated {
+  background:
+    radial-gradient(60% 80% at 10% 10%, rgba(162,155,254,.25), rgba(0,0,0,0) 60%),
+    radial-gradient(50% 70% at 80% 20%, rgba(239, 85, 85, 0.2), rgba(0,0,0,0) 60%),
+    radial-gradient(40% 60% at 50% 90%, rgba(255,118,117,.18), rgba(0,0,0,0) 60%);
+  animation: drift 18s ease-in-out infinite alternate;
+  filter: saturate(1.15);
+}
+@keyframes drift {
+  0% { transform: translate3d(0,0,0) scale(1); }
+  100% { transform: translate3d(-2%, -1%, 0) scale(1.03); }
+}
+
+
+
 /* Cards & glass */
 @layer components {
   .glass {
@@ -62,42 +102,6 @@
   }
 }
 
-/* Fonts & variables */
-:root {
-  --bg: #0b0b11;
-  --panel: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.12);
-  --text: #dadae5;
-  --muted: #B8B8C7;
-  --brand: #7168b7;
-  --accent: #A29BFE;
-  --success: #55efc4;
-  --danger: #ff7675;
-}
-
-html, body { @apply h-full; }
-body {
-  background:
-    radial-gradient(1200px 800px at 20% -10%, rgba(108,92,231,0.15), transparent 70%),
-    radial-gradient(1000px 900px at 120% 20%, rgba(255,118,117,0.10), transparent 70%),
-    var(--bg);
-  @apply antialiased;
-  color: var(--text);
-}
-
-
-.bg-animated {
-  background:
-    radial-gradient(60% 80% at 10% 10%, rgba(162,155,254,.25), rgba(0,0,0,0) 60%),
-    radial-gradient(50% 70% at 80% 20%, rgba(85,239,196,.20), rgba(0,0,0,0) 60%),
-    radial-gradient(40% 60% at 50% 90%, rgba(255,118,117,.18), rgba(0,0,0,0) 60%);
-  animation: drift 18s ease-in-out infinite alternate;
-  filter: saturate(1.15);
-}
-@keyframes drift {
-  0% { transform: translate3d(0,0,0) scale(1); }
-  100% { transform: translate3d(-2%, -1%, 0) scale(1.03); }
-}
 
 .container-pro { @apply max-w-6xl mx-auto px-6; }
 
