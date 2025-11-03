@@ -10,15 +10,15 @@ const links = [
 ];
 ---
 
-<!-- <ScrollProgress /> -->
+<ScrollProgress />
 <header class="sticky top-0 z-50 border-b border-black/0 dark:border-white/">
   <div class="container-pro-sm py-2">
     <div class="glass-nav">
       <div class="flex items-center justify-between px-4 py-2">
         <!-- 左侧：Logo / 名称 -->
         <a href={`/${lang}/`} class="flex items-center gap-4">
-          <div class="h-9 w-9 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center">
-            <span class="text-brand font-extrabold">{t.title}</span>
+          <div class="h-9 w-9 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center dark:bg-white/80">
+            <img src="/icon.png" alt="Logo" class="h-5 w-5 inline-block ml-0 -mt-1" />
           </div>
           <span class="font-semibold tracking-wide">{t.name}</span>
         </a>

@@ -31,7 +31,8 @@ body {
   background:
     radial-gradient(60% 80% at 10% 10%, rgba(162,155,254,.25), rgba(0,0,0,0) 60%),
     radial-gradient(50% 70% at 80% 20%, rgba(239, 85, 85, 0.2), rgba(0,0,0,0) 60%),
-    radial-gradient(40% 60% at 50% 90%, rgba(255,118,117,.18), rgba(0,0,0,0) 60%);
+    radial-gradient(40% 60% at 50% 90%, rgba(255,118,117,.18), rgba(0,0,0,0) 60%),
+    radial-gradient(100% 80% at 50% 40%, rgba(255, 117, 209, 0.18), rgba(0,0,0,0) 40%);
   animation: drift 18s ease-in-out infinite alternate;
   filter: saturate(1.15);
 }
