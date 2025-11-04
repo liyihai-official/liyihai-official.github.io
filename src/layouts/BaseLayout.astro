@@ -6,6 +6,7 @@ const {
   lang = "en" 
 } = Astro.props;
 
+import "../styles/global.css";     // Tailwind
 import "katex/dist/katex.min.css"; // KaTeX
 
 ---
@@ -20,7 +21,6 @@ import "katex/dist/katex.min.css"; // KaTeX
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta name="theme-color" content="#0b0b11" />
-    <!-- <link rel="icon" href="/favicon.svg" /> -->
     <link rel="icon" href="/icon.png" />
     <link rel="stylesheet" href="/src/styles/global.css" />
     <script>
