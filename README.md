@@ -19,7 +19,7 @@ Bilingual portfolio built with Astro 4 and Tailwind CSS. Statically generated fo
 
 ## UI behavior
 
-A shared background covers navigation and content. The sticky navigation gains a blurred surface on scroll; the mobile menu floats over content and closes on Escape, outside click, or navigation. Theme preference is saved when storage is available, otherwise switching still works for the current page. Language switching preserves the current section and matches translated blog posts, falling back to the other language's blog index when needed.
+A shared background covers navigation and content. The sticky navigation gains a blurred surface on scroll; the mobile menu floats over content and closes on Escape, outside click, or navigation. Theme preference is saved when storage is available, otherwise switching still works for the current page. Language switching opens the corresponding page at the top without carrying stale section anchors. It matches translated blog posts, falling back to the other language's blog index when needed.
 
 Content is rendered without JavaScript. Reveal effects respect reduced motion. Project filtering uses accessible pressed states and announces the visible count.
 

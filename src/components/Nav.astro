@@ -77,8 +77,6 @@ const links = [
   const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
   updateHeader();
   addEventListener('scroll', updateHeader, { passive: true });
-  const languageLink = document.querySelector<HTMLAnchorElement>('[data-language-switch]');
-  const updateLanguageHash = () => { if (languageLink) languageLink.hash = location.hash; };
-  updateLanguageHash();
-  addEventListener('hashchange', updateLanguageHash);
+  // The language link keeps its server-rendered page URL. Do not copy location.hash:
+  // a previously visited section remains in the URL after the user scrolls away.
 </script>
