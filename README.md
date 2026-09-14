@@ -1,6 +1,6 @@
 # LI Yihai · Personal website
 
-Bilingual portfolio built with Astro 4 and Tailwind CSS. Statically generated for GitHub Pages.
+<!-- Bilingual portfolio built with Astro 4 and Tailwind CSS. Statically generated for GitHub Pages.
 
 ## Development
 
@@ -25,4 +25,4 @@ Content is rendered without JavaScript. Reveal effects respect reduced motion. P
 
 ## Content still to review
 
-The repository still contains two sample blog posts, one Chinese project versus four English projects, and English experience descriptions on the Chinese page. The mathematical-modeling project currently repeats the CNN project's summary. These require the owner's final content. Template `github.com/yourname/...` URLs were removed; add genuine repositories when available.
+The repository still contains two sample blog posts, one Chinese project versus four English projects, and English experience descriptions on the Chinese page. The mathematical-modeling project currently repeats the CNN project's summary. These require the owner's final content. Template `github.com/yourname/...` URLs were removed; add genuine repositories when available. -->
