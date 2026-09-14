@@ -1,14 +1,7 @@
 ---
 export async function getStaticPaths() {
-  // const { getCollection } = await import('astro:content');
-  // const langs = ['en','zh'];
-  // const all = await Promise.all(langs.map(async (l) => {
-  //   const posts = await getCollection('blog', ({ data }) => data.lang === l);
-  //   return posts.map((p) => ({ params: { lang: l, slug: p.slug } }));
-  // }));
-  // return { params: all.flat().map(p => p.params) };
-
-  return [];
+  const posts = await getCollection('blog');
+  return posts.map(entry => ({ params: { lang: entry.data.lang, slug: entry.slug }, props: { entry } }));
 }
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Nav from "@/components/Nav.astro";
@@ -16,31 +9,29 @@ import Footer from "@/components/Footer.astro";
 import { t as getT, validLang } from "@/i18n";
 import { getCollection } from 'astro:content';
 
-const { lang, slug } = Astro.params;
+const { lang } = Astro.params;
 const langSafe = validLang(lang) ? lang : 'en';
 const t = getT(langSafe);
-
-const all = await getCollection('blog', ({ data }) => data.lang === langSafe);
-const entry = all.find((e) => e.slug === slug);
-if (!entry) {
-  throw new Error("Post not found");
-}
-const { Content } = await entry.render();
-const headings = await entry.getHeadings();
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+const alternateLang = langSafe === 'en' ? 'zh' : 'en';
+const counterpart = (await getCollection('blog')).find(post => post.data.lang === alternateLang && post.slug.replace(/-(en|zh)$/, '') === entry.slug.replace(/-(en|zh)$/, ''));
+const alternateHref = counterpart ? `/${alternateLang}/blog/${counterpart.slug}/` : `/${alternateLang}/blog/`;
 ---
 <BaseLayout title={`${entry.data.title} — ${t.name}`} lang={langSafe}>
-  <Nav t={t} lang={langSafe} />
-  <main class="container-pro py-10 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
+  <Nav t={t} lang={langSafe} alternateHref={alternateHref} />
+  <main id="main-content" tabindex="-1" class="container-pro py-10 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
     <article class="prose prose-zinc max-w-none dark:prose-invert">
-      <h1 class="mb-2">{entry.data.title}</h1>
-      <p class="text-sm text-black/60 dark:text-white/60">{new Date(entry.data.date).toDateString()}</p>
+      <a href={`/${langSafe}/blog/`} class="text-sm">← {t.ui.back}</a>
+      <h1 class="mb-2 mt-6">{entry.data.title}</h1>
+      <p class="text-sm text-black/60 dark:text-white/60">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(entry.data.date))}</p>
       <div class="mt-6">
         <Content />
       </div>
     </article>
-    <aside class="hidden lg:block sticky top-20 h-max">
+    <aside hidden={headings.length === 0} class="hidden lg:block sticky top-20 h-max">
       <div class="glass p-4">
-        <h4 class="font-semibold mb-3">On this page</h4>
+        <h4 class="font-semibold mb-3">{t.ui.toc}</h4>
         <nav id="toc" class="space-y-2 text-sm">
           {headings.filter(h => h.depth <= 3).map(h => (
             <a href={`#${h.slug}`} class="block opacity-80 hover:opacity-100" data-toc={h.slug}>

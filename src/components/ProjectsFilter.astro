@@ -1,25 +1,28 @@
 ---
-const { tags = [] } = Astro.props;
+const { tags = [], t, total = 0 } = Astro.props;
 ---
-<div class="glass p-4 md:p-6 mb-6">
-  <div class="flex flex-wrap gap-2" id="tags-filter">
-    {tags.map(t => <button class="badge" data-magnet data-tag={t}>{t}</button>)}
-    <button class="badge" data-magnet data-tag="__all">All</button>
+<div>
+  <div class="flex flex-wrap gap-2" id="tags-filter" role="group" aria-label={t.nav.projects}>
+    <button class="badge filter-button" data-tag="__all" aria-pressed="true">{t.ui.all}</button>
+    {tags.map(tag => <button class="badge filter-button" data-tag={tag} aria-pressed="false">{tag}</button>)}
   </div>
+  <p id="filter-status" class="muted text-xs mt-4" role="status" aria-live="polite" data-label={t.ui.results}>{t.ui.results}: {total}</p>
 </div>
-
-
-
 <script>
-  const root = document.getElementById('tags-filter');
-  root?.addEventListener('click', (e)=>{
-    const btn = e.target.closest('button[data-tag]');
-    if(!btn) return;
-    const tag = btn.getAttribute('data-tag');
-    document.querySelectorAll('[data-project]').forEach((card)=>{
-      const tags = (card.getAttribute('data-tags')||'').split(',');
-      const show = tag === '__all' || tags.includes(tag);
-      card.style.display = show ? '' : 'none';
+  const filters = document.getElementById('tags-filter');
+  filters?.addEventListener('click', event => {
+    if (!(event.target instanceof Element)) return;
+    const button = event.target.closest<HTMLButtonElement>('button[data-tag]');
+    if (!button) return;
+    const tag = button.dataset.tag;
+    filters.querySelectorAll('button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    let count = 0;
+    document.querySelectorAll<HTMLElement>('[data-project]').forEach(card => {
+      const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+      card.hidden = tag !== '__all' && !tags.includes(tag || '');
+      if (!card.hidden) { count++; card.classList.remove('pending'); }
     });
+    const status = document.getElementById('filter-status');
+    if (status) status.textContent = `${status.dataset.label}: ${count}`;
   });
 </script>

@@ -5,5 +5,4 @@ lang: "en"
 tags: [
   "Python", "Matlab", "Tensorflow 2.x", "CUDA", "RNNs", "LSTMs"
   ]
-repo: "https://github.com/yourname/cfd-solver"
 ---

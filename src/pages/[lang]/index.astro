@@ -20,17 +20,16 @@ const langSafe = validLang(lang) ? lang : 'en';
 const t = getT(langSafe);
 const projects = (await getCollection('projects', ({ data }) => data.lang === langSafe)).slice(0, 4);
 ---
-<BaseLayout title={`${t.name} CV`} description="A high-end Astro resume template" lang={langSafe}>
+<BaseLayout title={`${t.name} — ${t.tagline}`} description={t.bio} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
   
+  <main id="main-content" tabindex="-1">
   <Hero
     t={t}
     ctas={[
-      { href: '/CV.pdf', label: 'Download CV', primary: true },
-      { href: `/${lang}/#contact`, label: 'Contact', primary: false},
+      { href: '/CV.pdf', label: t.ui.download, primary: true },
+      { href: `/${lang}/#contact`, label: t.nav.contact, primary: false},
     ]}
-    bio={t.bio}
-    avatar={t.avatar}
   />
 
   <Section id="experience" title={t.sections.experience.title} subtitle={t.sections.experience.subtitle}>
@@ -38,17 +37,18 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
   </Section>
 
   <Section id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>
-    <div class="grid md:grid-cols-1 gap-6 md:gap-8">
-      {projects.map((p) => <ProjectCard title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link || '#'} repo={p.data.repo} />)}
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+      {projects.map((p) => <ProjectCard title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link} repo={p.data.repo} t={t} />)}
     </div>
+    <a href={`/${langSafe}/projects/`} class="text-sm text-[var(--brand)] font-medium justify-self-start">{t.ui.viewAll} <span aria-hidden="true">↗</span></a>
   </Section>
 
   <Section id="contact" title={t.sections.contact.title} subtitle={t.sections.contact.subtitle}>
     <div class="glass p-8 md:p-10 reveal">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h3 class="text-2xl font-bold">Let's build something ambitious.</h3>
-          <p class="text-black/70 dark:text-white/70 mt-2">Email me at <a class="underline" href="mailto:liy35@gmail.com">liy35@gmail.com</a>.</p>
+          <h3 class="text-2xl font-bold">{t.ui.contactTitle}</h3>
+          <p class="text-black/70 dark:text-white/70 mt-2">{t.ui.contactBody}</p>
         </div>
         <a href="mailto:liy35@gmail.com" class="btn btn-primary">
           {t.sections.contact.cta}
@@ -57,5 +57,6 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     </div>
   </Section>
 
+  </main>
   <Footer lang={langSafe} />
 </BaseLayout>

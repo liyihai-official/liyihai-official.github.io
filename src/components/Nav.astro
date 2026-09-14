@@ -1,112 +1,84 @@
 ---
-import ScrollProgress from "./ScrollProgress.astro";
-import { otherLang } from "@/i18n";
-const { t, lang } = Astro.props;
+import ScrollProgress from './ScrollProgress.astro';
+import { otherLang } from '@/i18n';
+const { t, lang, alternateHref } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '');
+const switchHref = alternateHref ?? Astro.url.pathname.replace(/^\/(en|zh)(?=\/|$)/, `/${otherLang(lang)}`);
 const links = [
   { href: `/${lang}/#experience`, label: t.nav.experience },
-  { href: `/${lang}/projects`,    label: t.nav.projects   },
-  { href: `/${lang}/skills`,      label: t.nav.skills     },
-  { href: `/${lang}/#contact`,    label: t.nav.contact    },
+  { href: `/${lang}/projects/`, label: t.nav.projects },
+  { href: `/${lang}/skills/`, label: t.nav.skills },
+  { href: `/${lang}/blog/`, label: t.nav.blog },
+  { href: `/${lang}/#contact`, label: t.nav.contact },
 ];
 ---
-
 <ScrollProgress />
-<header class="sticky top-0 z-50 border-b border-black/0 dark:border-white/">
-  <div class="container-pro-sm py-2">
+<header class="site-header" id="site-header">
+  <div class="container-pro">
     <div class="glass-nav">
-      <div class="flex items-center justify-between px-4 py-2">
-        <!-- 左侧：Logo / 名称 -->
-        <a href={`/${lang}/`} class="flex items-center gap-4">
-          <div class="h-9 w-9 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center dark:bg-white/80">
-            <img src="/icon.png" alt="Logo" class="h-5 w-5 inline-block ml-0 -mt-1" />
-          </div>
-          <span class="font-semibold tracking-wide">{t.name}</span>
+      <div class="flex items-center justify-between gap-3 px-3 py-1.5">
+        <a href={`/${lang}/`} class="flex items-center gap-3 shrink-0" aria-label={`${t.name} · ${t.ui.home}`}>
+          <span class="h-9 w-9 rounded-xl bg-white/80 border border-black/5 flex items-center justify-center"><img src="/icon.png" alt="" width="23" height="23" /></span>
+          <span class="font-semibold tracking-tight text-sm">{t.name}</span>
         </a>
-
-        <!-- 右侧：桌面导航 + 主题按钮 + 语言切换 -->
-        <div class="hidden md:flex items-center gap-4 text-sm text-black/80 dark:text-white/80">
-          <a href={`/${otherLang(lang)}/`} class="px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
-            {otherLang(lang).toUpperCase()}
-          </a>
-          {links.map(l => (
-            <a href={l.href} class="hover:text-black dark:hover:text-white transition-colors">
-              {l.label}
-            </a>
-          ))}
-          <!-- 主题切换（桌面可见） -->
-          <button id="theme-toggle" class="ml-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 transition-colors text-sm">
-            <span class="inline dark:hidden">🌙 Dark</span>
-            <span class="hidden dark:inline">☀️ Light</span>
-          </button>
-        </div>
-
-        <!-- 汉堡按钮（仅小屏显示） -->
-        <button
-          id="menu-toggle"
-          class="md:hidden inline-flex items-center justify-center rounded-lg px-2 py-1.5 border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20"
-          aria-label="Toggle menu"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          <!-- 简单汉堡图标 -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- 移动端下拉菜单 -->
-      <div id="mobile-menu" class="md:hidden hidden border-t border-white/10 px-3 pb-3">
-        <nav class="flex flex-col gap-3 pt-3 text-sm text-black/80 dark:text-white/80">
-          <a href={`/${otherLang(lang)}/`} class="self-start px-2 py-1 rounded-lg border border-white/10 bg-white/10 dark:bg-white/10 text-xs">
-            {otherLang(lang).toUpperCase()}
-          </a>
-          {links.map(l => (
-            <a href={l.href} class="px-2 py-1 rounded-md hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
-              {l.label}
-            </a>
-          ))}
-
-          <!-- 主题切换（移动端单独放一份，避免滚动不到右上角） -->
-          <button id="theme-toggle-mobile" class="mt-2 inline-flex w-max items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/10 text-black/80 dark:text-white/90 hover:bg-black/10 dark:hover:bg-white/20 text-sm">
-            <span class="inline dark:hidden">🌙 Dark</span>
-            <span class="hidden dark:inline">☀️ Light</span>
-          </button>
+        <nav class="hidden md:flex items-center gap-1" aria-label={t.ui.navigation}>
+          {links.map(l => <a href={l.href} class="nav-link" aria-current={path === l.href.replace(/\/$/, '') ? 'page' : undefined}>{l.label}</a>)}
         </nav>
+        <div class="flex items-center gap-2">
+          <a href={switchHref} data-language-switch class="nav-control" lang={otherLang(lang)} aria-label={lang === 'en' ? '切换为中文' : 'Switch to English'}>{lang === 'en' ? '中文' : 'EN'}</a>
+          <button id="theme-toggle" class="nav-control" aria-label={t.ui.theme} title={t.ui.theme} aria-pressed="false">
+            <svg class="dark:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z" /></svg>
+            <svg class="hidden dark:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+          </button>
+          <button id="menu-toggle" class="nav-control md:hidden" aria-label={t.ui.menu} aria-controls="mobile-menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        </div>
       </div>
+      <nav id="mobile-menu" hidden class="md:hidden p-3" aria-label={t.ui.navigation}>
+        <div class="flex flex-col gap-1">{links.map(l => <a href={l.href} class="nav-link" aria-current={path === l.href.replace(/\/$/, '') ? 'page' : undefined}>{l.label}</a>)}</div>
+      </nav>
     </div>
   </div>
-
-  <!-- 脚本：主题切换 + 菜单开关（无依赖、可并存） -->
-  <script is:inline>
-    // === 主题切换（桌面+移动） ===
-    (function(){
-      const KEY = 'theme';
-      const root = document.documentElement;
-      const set = (theme) => { theme==='dark' ? root.classList.add('dark') : root.classList.remove('dark'); localStorage.setItem(KEY, theme); };
-      const get = () => (localStorage.getItem(KEY)==='dark' ? 'dark' : (localStorage.getItem(KEY)==='light' ? 'light' : null));
-      if(!get()){ set(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
-      const bind = (id) => document.getElementById(id)?.addEventListener('click', ()=>{
-        const now = root.classList.contains('dark') ? 'dark' : 'light';
-        set(now === 'dark' ? 'light' : 'dark');
-      });
-      bind('theme-toggle');
-      bind('theme-toggle-mobile');
-    })();
-
-    // === 移动端菜单折叠 ===
-    (function(){
-      const btn = document.getElementById('menu-toggle');
-      const panel = document.getElementById('mobile-menu');
-      if(!btn || !panel) return;
-      btn.addEventListener('click', ()=>{
-        const open = panel.classList.toggle('hidden') ? false : true;
-        btn.setAttribute('aria-expanded', String(open));
-      });
-      // 点击菜单项后自动收起
-      panel.querySelectorAll('a').forEach(a=>{
-        a.addEventListener('click', ()=>{ panel.classList.add('hidden'); btn.setAttribute('aria-expanded','false'); });
-      });
-    })();
-  </script>
 </header>
+<script>
+  const root = document.documentElement;
+  const themeButton = document.getElementById('theme-toggle');
+  const syncTheme = () => {
+    const dark = root.classList.contains('dark');
+    themeButton?.setAttribute('aria-pressed', String(dark));
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#121119' : '#faf9fc');
+  };
+  syncTheme();
+  themeButton?.addEventListener('click', () => {
+    root.classList.toggle('dark');
+    try { localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light'); } catch {}
+    syncTheme();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    let saved;
+    try { saved = localStorage.getItem('theme'); } catch {}
+    if (saved !== 'dark' && saved !== 'light') { root.classList.toggle('dark', e.matches); syncTheme(); }
+  });
+  const header = document.getElementById('site-header');
+  const menuButton = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const setMenu = (open: boolean) => {
+    if (!menu) return;
+    menu.hidden = !open;
+    menuButton?.setAttribute('aria-expanded', String(open));
+    header?.classList.toggle('menu-open', open);
+  };
+  menuButton?.addEventListener('click', () => setMenu(menu?.hidden ?? false));
+  menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu && !menu.hidden) { setMenu(false); menuButton?.focus(); }
+  });
+  document.addEventListener('click', e => { if (e.target instanceof Node && !header?.contains(e.target)) setMenu(false); });
+  matchMedia('(min-width: 768px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  updateHeader();
+  addEventListener('scroll', updateHeader, { passive: true });
+  const languageLink = document.querySelector<HTMLAnchorElement>('[data-language-switch]');
+  const updateLanguageHash = () => { if (languageLink) languageLink.hash = location.hash; };
+  updateLanguageHash();
+  addEventListener('hashchange', updateLanguageHash);
+</script>

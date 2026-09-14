@@ -15,18 +15,20 @@ const langSafe = validLang(lang) ? lang : 'en';
 const t = getT(langSafe);
 const posts = await getCollection('blog', ({ data }) => data.lang === langSafe);
 ---
-<BaseLayout title={`${t.name} — Blog`} lang={langSafe}>
+<BaseLayout title={`${t.name} — ${t.nav.blog}`} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
-  <Section id="blog" title={t.sections.blog.title} subtitle={t.sections.blog.subtitle}>
+  <main id="main-content" tabindex="-1">
+  <Section heading="h1" id="blog" title={t.sections.blog.title} subtitle={t.sections.blog.subtitle}>
     <div class="grid gap-4">
       {posts.sort((a,b)=> a.data.date < b.data.date ? 1 : -1).map((p) => (
         <a href={`/${langSafe}/blog/${p.slug}`} class="glass p-6 md:p-8 card-hover">
-          <h3 class="text-xl font-bold">{p.data.title}</h3>
+          <h2 class="text-xl font-bold">{p.data.title}</h2>
           {p.data.description && <p class="text-black/70 dark:text-white/70 mt-2">{p.data.description}</p>}
-          <p class="text-sm text-black/60 dark:text-white/60 mt-3">{new Date(p.data.date).toDateString()}</p>
+          <p class="text-sm text-black/60 dark:text-white/60 mt-3">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(p.data.date))}</p>
         </a>
       ))}
     </div>
   </Section>
+  </main>
   <Footer lang={langSafe} />
 </BaseLayout>

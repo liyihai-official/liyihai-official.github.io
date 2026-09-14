@@ -1,4 +1,6 @@
 export default {
+  hero: { eyebrow: "Research · Computing · Engineering" },
+  ui: { home: "Home", navigation: "Main navigation", theme: "Toggle dark mode", menu: "Toggle menu", all: "All projects", source: "Source code", visit: "View project", unavailable: "Project overview", results: "Projects shown", download: "Download CV", viewAll: "View all projects", contactTitle: "Let's work on something meaningful.", contactBody: "For research, opportunities, or a conversation about computing.", back: "Back to blog", toc: "On this page" },
   title: "CV",
   name: "LI Yihai",
   bio: "Hi! I'm focusing on parallel & distributed computing, GPU acceleration, and physics-informed PDE solvers. Previously a TA for Engineering Mathematics and Discrete Mathematics at Trinity College Dublin.",

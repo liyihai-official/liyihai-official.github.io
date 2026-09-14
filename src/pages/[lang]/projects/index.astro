@@ -18,13 +18,15 @@ const t = getT(langSafe);
 const items = await getCollection('projects', ({ data }) => data.lang === langSafe);
 const tagSet = Array.from(new Set(items.flatMap(i => (i.data.tags||[]))));
 ---
-<BaseLayout title={`${t.name} — Projects`} lang={langSafe}>
+<BaseLayout title={`${t.name} — ${t.nav.projects}`} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
-  <Section id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>
-    <ProjectsFilter tags={tagSet} />
+  <main id="main-content" tabindex="-1">
+  <Section heading="h1" id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>
+    <ProjectsFilter tags={tagSet} t={t} total={items.length} />
     <div class="grid md:grid-cols-2 gap-6 md:gap-8">
-      {items.map((p) => <ProjectCard title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link || '#'} repo={p.data.repo} />)}
+      {items.map((p) => <ProjectCard heading="h2" title={p.data.title} description={p.data.summary} tags={p.data.tags} link={p.data.link} repo={p.data.repo} t={t} />)}
     </div>
   </Section>
+  </main>
   <Footer lang={langSafe} />
 </BaseLayout>

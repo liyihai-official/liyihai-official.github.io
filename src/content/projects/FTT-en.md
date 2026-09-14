@@ -5,5 +5,4 @@ lang: "en"
 tags: [
   "Python", "Pytorch", "CUDA", "CNNs", "Histogram of Gradients", "Fast Fourier Transform"
   ]
-repo: "https://github.com/yourname/cfd-solver"
 ---

@@ -1,14 +1,12 @@
 ---
-const defaultLang = 'en';              // default language code
-const target = `/${defaultLang}/`;
+import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
-<!doctype html>
-<html lang={defaultLang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <title>Not Found — Redirecting…</title>
-    <meta name="robots" content="noindex" />
-  </head>
-  <body></body>
-</html>
+<BaseLayout title="404 — LI Yihai">
+  <main id="main-content" tabindex="-1" class="container-pro min-h-[85svh] flex flex-col items-start justify-center gap-6">
+    <p class="eyebrow">404 · Page not found</p>
+    <h1 class="text-4xl md:text-5xl font-semibold tracking-tight">This page is missing.</h1>
+    <p class="muted">The link may have changed. You can continue from the homepage.</p>
+    <p class="muted" lang="zh">这个页面暂时找不到了，你可以返回首页继续浏览。</p>
+    <div class="flex flex-wrap gap-3"><a href="/en/" class="btn btn-primary">Home ↗</a><a href="/zh/" class="btn btn-ghost" lang="zh">中文首页 ↗</a></div>
+  </main>
+</BaseLayout>

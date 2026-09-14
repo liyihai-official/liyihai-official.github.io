@@ -5,7 +5,6 @@ lang: "en"
 tags: [
   "R", "LISp-miner", "Pytorch", "Dimensional-Analysis"
   ]
-repo: "https://github.com/yourname/cfd-solver"
 at: "Temperate University"
 period: "Sept. 2018 - Nov. 2018"
 ---

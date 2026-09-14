@@ -21,20 +21,22 @@ const skillList = [
   ["Slurm/HDF5", 80]
 ];
 ---
-<BaseLayout title={`${t.name} — Skills`} lang={langSafe}>
+<BaseLayout title={`${t.name} — ${t.nav.skills}`} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
-  <Section id="skills" title={t.sections.skills.title} subtitle={t.sections.skills.subtitle}>
+  <main id="main-content" tabindex="-1">
+  <Section heading="h1" id="skills" title={t.sections.skills.title} subtitle={t.sections.skills.subtitle}>
     <div class="grid md:grid-cols-2 gap-6">
       {skillList.map(([label, pct]) => (
         <div class="glass p-5 reveal">
           <div class="flex items-center justify-between mb-2">
             <span class="font-semibold">{label}</span>
-            <span class="text-white/70">{pct}%</span>
+            <span class="muted text-sm">{pct}%</span>
           </div>
-          <div class="skill-meter"><span style={`transform:scaleX(${Number(pct)/100})`}></span></div>
+          <div class="skill-meter" role="meter" aria-label={String(label)} aria-valuemin="0" aria-valuemax="100" aria-valuenow={Number(pct)}><span style={`width:${Number(pct)}%`}></span></div>
         </div>
       ))}
     </div>
   </Section>
+  </main>
   <Footer lang={langSafe} />
 </BaseLayout>

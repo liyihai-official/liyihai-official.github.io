@@ -1,5 +1,5 @@
 export const heroCtas = (lang: 'en' | 'zh') => [
-  { label: lang === 'en' ? 'Download CV (PDF)' : '下载简历（PDF）', href: '/cv.pdf', primary: true },
+  { label: lang === 'en' ? 'Download CV (PDF)' : '下载简历（PDF）', href: '/CV.pdf', primary: true },
   { label: lang === 'en' ? 'Email me' : '给我发邮件', href: 'mailto:liy35@tcd.ie' }
 ];
 
