@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
-  site: 'https://liyihai-official.github.io',
+  site: 'https://liyihai.com',
   integrations: [tailwind({ applyBaseStyles: false })],
   server: { port: 4321 },
   vite: {

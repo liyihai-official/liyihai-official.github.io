@@ -15,6 +15,7 @@ import Footer from "@/components/Footer.astro";
 
 import { t as getT, validLang } from "@/i18n";
 import { education, experienceGroups } from "@/data/resume";
+import { personJsonLd } from "@/data/person";
 import { getCollection } from "astro:content";
 
 const { lang } = Astro.params;
@@ -22,7 +23,7 @@ const langSafe = validLang(lang) ? lang : 'en';
 const t = getT(langSafe);
 const projects = (await getCollection('projects', ({ data }) => data.lang === langSafe)).slice(0, 4);
 ---
-<BaseLayout title={`${t.name} — ${t.tagline}`} description={t.bio} lang={langSafe}>
+<BaseLayout lang={langSafe} jsonLd={personJsonLd(langSafe, new URL(`/${langSafe}/`, Astro.site).href, Astro.site!)}>
   <Nav t={t} lang={langSafe} />
   
   <main id="main-content" tabindex="-1">

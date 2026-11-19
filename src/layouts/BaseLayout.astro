@@ -1,19 +1,60 @@
 ---
-const { title = 'LI Yihai', description = 'High-performance computing, GPU acceleration & scientific machine learning.', image = '/images/avatar.png', lang = 'en' } = Astro.props;
+import { t as getT, otherLang, type Lang } from '@/i18n';
+
+const {
+  title,
+  description,
+  image = '/images/avatar.png',
+  lang = 'en',
+  // Path of the same page in the other language. Defaults to swapping /en/ and /zh/;
+  // pass null when no translation exists.
+  alternatePath,
+  noindex = false,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
 import '@fontsource-variable/inter';
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
+
+const site = Astro.site!;
+const seo = getT(lang as Lang).seo;
+const pageTitle = title ?? seo.title;
+const pageDescription = description ?? seo.description;
+const withSlash = (p: string) => (p.endsWith('/') || /\.[a-z0-9]+$/i.test(p) ? p : `${p}/`);
+const path = withSlash(Astro.url.pathname);
+const canonical = new URL(path, site).href;
+const langMatch = path.match(/^\/(en|zh)\//);
+const other = langMatch ? otherLang(langMatch[1] as Lang) : undefined;
+const otherPath = alternatePath === null ? null : alternatePath ?? (other ? path.replace(/^\/(en|zh)\//, `/${other}/`) : null);
+const alternates = langMatch && !noindex
+  ? [
+      { hreflang: langMatch[1] === 'zh' ? 'zh-CN' : 'en', href: canonical },
+      ...(otherPath ? [{ hreflang: other === 'zh' ? 'zh-CN' : 'en', href: new URL(withSlash(otherPath), site).href }] : []),
+    ]
+  : [];
+const enHref = alternates.find(a => a.hreflang === 'en')?.href;
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={lang === 'zh' ? 'zh-CN' : 'en'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site).href} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content="Yihai Li (李艺海)" />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    {alternates.map(a => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={seo.name} />
+    <meta property="og:locale" content={lang === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={new URL(image, site).href} />
+    <meta name="twitter:card" content="summary" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <meta name="theme-color" content="#faf9fc" />
     <link rel="icon" href="/icon.png" />
     <script is:inline>

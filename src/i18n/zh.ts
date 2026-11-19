@@ -2,6 +2,11 @@ export default {
   hero: { eyebrow: "研究 · 计算 · 工程" },
   ui: { home: "首页", navigation: "主导航", theme: "切换深色模式", menu: "展开或收起菜单", all: "全部项目", source: "源代码", visit: "查看项目", unavailable: "项目概览", results: "显示项目", download: "下载简历", viewAll: "查看全部项目", contactTitle: "让想法成为下一次合作的起点。", contactBody: "欢迎交流科研、工作机会，以及关于计算的想法。", back: "返回博客", toc: "本文目录" },
   title: "简历",
+  seo: {
+    name: "李艺海 (Yihai Li)",
+    title: "李艺海 (Yihai Li) · 天普大学计算机与信息科学博士生",
+    description: "李艺海（Yihai Li / LI Yihai），天普大学（Temple University）计算机与信息科学博士生，研究方向为高性能计算、GPU 加速与科学机器学习。"
+  },
   name: "李艺海",
   bio: "你好！我自 2026 年秋季起在天普大学（Temple University）攻读计算机与信息科学博士学位，专注于并行与分布式计算、GPU 加速以及物理信息 PDE 求解器。此前在都柏林圣三一大学获得高性能计算硕士学位，并担任工程数学与离散数学助教。",
   avatar: "/images/avatar.png",  

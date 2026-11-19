@@ -18,7 +18,7 @@ const alternateLang = langSafe === 'en' ? 'zh' : 'en';
 const counterpart = (await getCollection('blog')).find(post => post.data.lang === alternateLang && post.slug.replace(/-(en|zh)$/, '') === entry.slug.replace(/-(en|zh)$/, ''));
 const alternateHref = counterpart ? `/${alternateLang}/blog/${counterpart.slug}/` : `/${alternateLang}/blog/`;
 ---
-<BaseLayout title={`${entry.data.title} — ${t.name}`} lang={langSafe}>
+<BaseLayout title={`${entry.data.title} · ${t.seo.name}`} description={entry.data.description} lang={langSafe} ogType="article" alternatePath={counterpart ? alternateHref : null}>
   <Nav t={t} lang={langSafe} alternateHref={alternateHref} />
   <main id="main-content" tabindex="-1" class="container-pro py-10 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
     <article class="prose prose-zinc max-w-none dark:prose-invert">

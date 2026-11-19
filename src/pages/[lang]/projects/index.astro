@@ -18,7 +18,7 @@ const t = getT(langSafe);
 const items = await getCollection('projects', ({ data }) => data.lang === langSafe);
 const tagSet = Array.from(new Set(items.flatMap(i => (i.data.tags||[]))));
 ---
-<BaseLayout title={`${t.name} — ${t.nav.projects}`} lang={langSafe}>
+<BaseLayout title={`${t.sections.projects.title} · ${t.seo.name}`} lang={langSafe}>
   <Nav t={t} lang={langSafe} />
   <main id="main-content" tabindex="-1">
   <Section heading="h1" id="projects" title={t.sections.projects.title} subtitle={t.sections.projects.subtitle}>

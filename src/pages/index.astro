@@ -1,14 +1,26 @@
 ---
-const defaultLang = 'en';
-const target = `/${defaultLang}/`;
+// GitHub Pages cannot send HTTP redirects, so the root sends visitors to a language page.
+// Search engines treat an instant meta refresh as a permanent redirect; the canonical
+// and hreflang links tell them which pages to index.
+const site = Astro.site!;
+const en = new URL('/en/', site).href;
+const zh = new URL('/zh/', site).href;
 ---
 <!doctype html>
-<html lang={defaultLang}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0;url=${target}`} />
-    <title>Redirecting…</title>
-    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yihai Li (李艺海) · Ph.D. Student, Temple University</title>
+    <meta name="description" content="Yihai Li (LI Yihai, 李艺海) is a Ph.D. student in Computer and Information Science at Temple University." />
+    <link rel="canonical" href={en} />
+    <link rel="alternate" hreflang="en" href={en} />
+    <link rel="alternate" hreflang="zh-CN" href={zh} />
+    <link rel="alternate" hreflang="x-default" href={en} />
+    <script is:inline>
+      try { if (/^zh\b/i.test(navigator.language || '')) location.replace('/zh/'); } catch {}
+    </script>
+    <meta http-equiv="refresh" content="0;url=/en/" />
   </head>
-  <body><a href={target}>Continue to LI Yihai’s homepage →</a></body>
+  <body><a href="/en/">Yihai Li — homepage</a> · <a href="/zh/" lang="zh-CN">李艺海 — 中文主页</a></body>
 </html>

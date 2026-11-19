@@ -2,6 +2,11 @@ export default {
   hero: { eyebrow: "Research · Computing · Engineering" },
   ui: { home: "Home", navigation: "Main navigation", theme: "Toggle dark mode", menu: "Toggle menu", all: "All projects", source: "Source code", visit: "View project", unavailable: "Project overview", results: "Projects shown", download: "Download CV", viewAll: "View all projects", contactTitle: "Let's work on something meaningful.", contactBody: "For research, opportunities, or a conversation about computing.", back: "Back to blog", toc: "On this page" },
   title: "CV",
+  seo: {
+    name: "Yihai Li (李艺海)",
+    title: "Yihai Li (李艺海) · Ph.D. Student, Temple University",
+    description: "Yihai Li (LI Yihai, 李艺海) is a Ph.D. student in Computer and Information Science at Temple University, working on high-performance computing, GPU acceleration and scientific machine learning."
+  },
   name: "LI Yihai",
   bio: "Hi! I'm a Ph.D. student in Computer and Information Science at Temple University (since Fall 2026), focusing on parallel & distributed computing, GPU acceleration, and physics-informed PDE solvers. Previously an M.Sc. in High Performance Computing and a TA for Engineering Mathematics and Discrete Mathematics at Trinity College Dublin.",
   avatar: "/images/avatar.png",
