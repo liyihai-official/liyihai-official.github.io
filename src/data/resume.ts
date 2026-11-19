@@ -10,6 +10,7 @@ export type Experience = {
   location: string;
   bullets: string[];
   link?: { href: string; label: string };
+  logo?: string;      // path under /public, e.g. /images/logos/temple.svg
 };
 
 export type ExperienceGroup = {
@@ -22,6 +23,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "Ph.D., Computer and Information Science",
     company: "Temple University",
+    logo: '/images/logos/temple.svg',
     period: "Fall 2026 — Present",
     location: "Philadelphia, PA, USA",
     bullets: []
@@ -29,6 +31,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "M.Sc., High Performance Computing",
     company: "Trinity College Dublin",
+    logo: '/images/logos/tcd.webp',
     period: "Sept. 2023 — Nov. 2024",
     location: "Dublin, Ireland",
     bullets: [
@@ -39,6 +42,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "B.S., Theoretical and Applied Mathematics",
     company: "Shanxi University",
+    logo: '/images/logos/sxu.webp',
     period: "Sept. 2016 — Jun. 2020",
     location: "Taiyuan, China",
     bullets: [
@@ -50,6 +54,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "计算机与信息科学 博士",
     company: "天普大学",
+    logo: '/images/logos/temple.svg',
     period: "2026 年秋 — 至今",
     location: "美国 宾夕法尼亚州 费城",
     bullets: []
@@ -57,6 +62,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "高性能计算 理学硕士",
     company: "都柏林圣三一大学",
+    logo: '/images/logos/tcd.webp',
     period: "2023.09 — 2024.11",
     location: "爱尔兰 都柏林",
     bullets: [
@@ -67,6 +73,7 @@ export const education = (lang: 'en' | 'zh'): Experience[] => lang === 'en' ? [
   {
     role: "理论与应用数学 理学学士",
     company: "山西大学",
+    logo: '/images/logos/sxu.webp',
     period: "2016.09 — 2020.06",
     location: "中国 太原",
     bullets: [
@@ -104,6 +111,7 @@ export const experienceGroups = (lang: 'en' | 'zh'): ExperienceGroup[] => {
         {
           role: L('Undergraduate Researcher & Team Leader', '本科生研究员 · 团队负责人'),
           company: L('Shanxi University', '山西大学'),
+          logo: '/images/logos/sxu.webp',
           period: L('Nov. 2017 — Nov. 2018', '2017.11 — 2018.11'),
           location: L('Taiyuan, China', '中国 太原'),
           bullets: LL([
@@ -129,6 +137,7 @@ export const experienceGroups = (lang: 'en' | 'zh'): ExperienceGroup[] => {
         {
           role: L('Software Engineer Intern', '软件工程师实习生'),
           company: 'Oracle',
+          logo: '/images/logos/oracle.webp',
           period: L('Winter 2018', '2018 年冬'),
           location: L('Beijing, China', '中国 北京'),
           bullets: LL([
@@ -150,6 +159,7 @@ export const experienceGroups = (lang: 'en' | 'zh'): ExperienceGroup[] => {
         {
           role: L('Teaching Assistant', '助教'),
           company: L('Temple University · CIS 4398 Projects in Computer Science', '天普大学 · CIS 4398 Projects in Computer Science'),
+          logo: '/images/logos/temple.svg',
           period: L('Fall 2026 — Present', '2026 年秋 — 至今'),
           location: L('Philadelphia, PA, USA', '美国 宾夕法尼亚州 费城'),
           bullets: LL([
@@ -166,6 +176,7 @@ export const experienceGroups = (lang: 'en' | 'zh'): ExperienceGroup[] => {
         {
           role: L('Teaching Assistant', '助教'),
           company: L('Trinity College Dublin', '都柏林圣三一大学'),
+          logo: '/images/logos/tcd.webp',
           period: '2024',
           location: L('Dublin, Ireland', '爱尔兰 都柏林'),
           bullets: LL([
@@ -177,6 +188,7 @@ export const experienceGroups = (lang: 'en' | 'zh'): ExperienceGroup[] => {
         {
           role: L('Teaching Assistant', '助教'),
           company: 'Oracle',
+          logo: '/images/logos/oracle.webp',
           period: L('Winter 2018', '2018 年冬'),
           location: L('Beijing, China', '中国 北京'),
           bullets: LL([

@@ -1,11 +1,16 @@
 ---
-const { role, company, period, location, bullets = [], link, heading = 'h4' } = Astro.props;
+const { role, company, period, location, bullets = [], link, logo, heading = 'h4' } = Astro.props;
 const Heading = heading;
 
 import { renderInlineMath } from "@/utils/katex.min";
 ---
 
 <article class="timeline-item glass p-6 md:p-8 reveal">
+  <div class:list={["timeline-logo", { "is-fallback": !logo }]} aria-hidden="true">
+    {logo
+      ? <img src={logo} alt="" width="48" height="48" loading="lazy" decoding="async" />
+      : <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L4.6 18.4A1.7 1.7 0 0 0 6.1 21h11.8a1.7 1.7 0 0 0 1.5-2.6L14 9.2V3"/><path d="M7.5 15h9"/></svg>}
+  </div>
   <div class="timeline-head">
     <div class="min-w-0">
       <Heading class="text-lg font-semibold tracking-tight leading-snug">{role}</Heading>
@@ -13,14 +18,18 @@ import { renderInlineMath } from "@/utils/katex.min";
     </div>
     <p class="timeline-meta"><span>{period}</span><span>{location}</span></p>
   </div>
-  {bullets.length > 0 && (
-    <ul class="mt-4 space-y-2">
-      {bullets.map((b) =>
-        <li set:html={renderInlineMath(b)} />
+  {(bullets.length > 0 || link) && (
+    <div class="timeline-body">
+      {bullets.length > 0 && (
+        <ul class="space-y-2">
+          {bullets.map((b) =>
+            <li set:html={renderInlineMath(b)} />
+          )}
+        </ul>
       )}
-    </ul>
-  )}
-  {link && (
-    <a href={link.href} target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand)] hover:underline">{link.label}<span aria-hidden="true">↗</span></a>
+      {link && (
+        <a href={link.href} target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand)] hover:underline">{link.label}<span aria-hidden="true">↗</span></a>
+      )}
+    </div>
   )}
 </article>

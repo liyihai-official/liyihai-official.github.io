@@ -89,14 +89,20 @@ button, a { touch-action: manipulation; }
 .section-heading::after { content: ''; height: 1px; background: var(--border); flex: 1; margin-left: 1rem; }
 .experience-group { display: grid; gap: 1rem; }
 .group-heading { display: flex; align-items: baseline; gap: .75rem; font-size: .9rem; font-weight: 600; }
-.timeline-head { display: flex; flex-direction: column; gap: .5rem; }
+.timeline-item { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); column-gap: 1rem; align-items: start; }
+.timeline-logo { grid-column: 1; grid-row: 1; display: flex; align-items: center; justify-content: center; width: 2.75rem; height: 2.75rem; padding: .3rem; border-radius: 12px; background: #fff; border: 1px solid var(--border); }
+.timeline-logo img { width: 100%; height: 100%; object-fit: contain; }
+.timeline-logo.is-fallback { background: var(--wash); color: var(--brand); }
+.timeline-head { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: .5rem; }
+.timeline-body { grid-column: 1 / -1; margin-top: 1rem; }
 .timeline-org { margin-top: .2rem; color: var(--brand); font-size: .9rem; font-weight: 500; }
-.timeline-meta { display: flex; flex-wrap: wrap; gap: 0 .5rem; color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; }
-.timeline-meta span + span::before { content: '·'; margin-right: .5rem; }
+.timeline-meta { display: flex; flex-direction: column; color: var(--muted); font-size: .82rem; line-height: 1.6; font-variant-numeric: tabular-nums; }
 @media (min-width: 768px) {
+  .timeline-item { grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: 1.25rem; }
+  .timeline-logo { width: 3.5rem; height: 3.5rem; padding: .4rem; border-radius: 14px; }
+  .timeline-body { grid-column: 2; }
   .timeline-head { flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 2rem; }
-  .timeline-meta { flex-direction: column; align-items: flex-end; flex-shrink: 0; text-align: right; line-height: 1.6; padding-top: .1rem; }
-  .timeline-meta span + span::before { content: none; }
+  .timeline-meta { align-items: flex-end; flex-shrink: 0; text-align: right; padding-top: .1rem; }
 }
 .timeline-item ul { list-style: disc outside; padding-left: 1.1rem; color: var(--muted); font-size: .9rem; line-height: 1.8; }
 .timeline-item li::marker { color: var(--accent); }
@@ -117,6 +123,7 @@ button, a { touch-action: manipulation; }
 .cubing-table thead th { color: var(--muted); font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .cubing-table tbody th { font-weight: 500; }
 .cubing-event { display: inline-flex; align-items: center; gap: .75rem; white-space: nowrap; }
+.btn-logo { flex: none; width: 22px; height: 22px; object-fit: contain; }
 .cubing-icon { flex: none; width: 1.5rem; height: 1.5rem; color: var(--brand); }
 .cubing-table tbody tr:last-child > * { border-bottom: 0; }
 /* Content stays readable if JavaScript is unavailable. */

@@ -11,9 +11,12 @@ const stats = [
 ---
 <div class="glass p-6 md:p-8 reveal cubing-card">
   <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-    <div>
-      <p class="eyebrow">WCA ID</p>
-      <p class="mt-2 text-2xl font-semibold tracking-tight tabular-nums">{cubing.wcaId}</p>
+    <div class="flex items-center gap-4">
+      <span class="timeline-logo" aria-hidden="true"><img src="/images/logos/wca.webp" alt="" width="48" height="48" loading="lazy" decoding="async" /></span>
+      <div>
+        <p class="eyebrow">WCA ID</p>
+        <p class="mt-1 text-2xl font-semibold tracking-tight tabular-nums">{cubing.wcaId}</p>
+      </div>
     </div>
     <dl class="flex flex-wrap gap-x-8 gap-y-4 md:gap-x-10">
       {stats.map(s => (
@@ -52,8 +55,8 @@ const stats = [
 
   <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div class="flex flex-wrap gap-3">
-      <a class="btn btn-ghost" href={cubing.wcaUrl} target="_blank" rel="noreferrer noopener">{c.wca}<span aria-hidden="true">↗</span></a>
-      <a class="btn btn-ghost" href={cubing.cubingUrl} target="_blank" rel="noreferrer noopener">{c.cubingCom}<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href={cubing.wcaUrl} target="_blank" rel="noreferrer noopener"><img class="btn-logo" src="/images/logos/wca.webp" alt="" width="22" height="22" loading="lazy" decoding="async" />{c.wca}<span aria-hidden="true">↗</span></a>
+      <a class="btn btn-ghost" href={cubing.cubingUrl} target="_blank" rel="noreferrer noopener"><img class="btn-logo" src="/images/logos/cubing.webp" alt="" width="22" height="22" loading="lazy" decoding="async" />{c.cubingCom}<span aria-hidden="true">↗</span></a>
     </div>
     <p class="text-xs muted">{c.caption} · {c.asOf} {cubing.asOf}</p>
   </div>
