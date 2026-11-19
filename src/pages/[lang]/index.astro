@@ -8,11 +8,13 @@ import Nav from "@/components/Nav.astro";
 import Hero from "@/components/Hero.astro";
 import Section from "@/components/Section.astro";
 import ExperienceList from "@/components/ExperienceList.astro";
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import Cubing from "@/components/Cubing.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
 import Footer from "@/components/Footer.astro";
 
 import { t as getT, validLang } from "@/i18n";
-import { experienceGroups } from "@/data/resume";
+import { education, experienceGroups } from "@/data/resume";
 import { getCollection } from "astro:content";
 
 const { lang } = Astro.params;
@@ -32,6 +34,12 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     ]}
   />
 
+  <Section id="education" title={t.sections.education.title} subtitle={t.sections.education.subtitle}>
+    <div class="grid gap-4">
+      {education(langSafe).map(it => <ExperienceItem {...it} heading="h3" />)}
+    </div>
+  </Section>
+
   <Section id="experience" title={t.sections.experience.title} subtitle={t.sections.experience.subtitle}>
     <ExperienceList groups={experienceGroups(langSafe)} />
   </Section>
@@ -43,14 +51,18 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     <a href={`/${langSafe}/projects/`} class="text-sm text-[var(--brand)] font-medium justify-self-start">{t.ui.viewAll} <span aria-hidden="true">↗</span></a>
   </Section>
 
+  <Section id="cubing" title={t.sections.cubing.title} subtitle={t.sections.cubing.subtitle}>
+    <Cubing t={t} lang={langSafe} />
+  </Section>
+
   <Section id="contact" title={t.sections.contact.title} subtitle={t.sections.contact.subtitle}>
-    <div class="glass p-8 md:p-10 reveal">
+    <div class="glass p-6 md:p-8 reveal">
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
         <div>
-          <h3 class="text-2xl font-bold">{t.ui.contactTitle}</h3>
-          <p class="text-black/70 dark:text-white/70 mt-2">{t.ui.contactBody}</p>
+          <h3 class="text-xl md:text-2xl font-semibold tracking-tight">{t.ui.contactTitle}</h3>
+          <p class="mt-2 muted text-sm md:text-base">{t.ui.contactBody}</p>
         </div>
-        <a href="mailto:liy35@gmail.com" class="btn btn-primary">
+        <a href="mailto:yihai.li@temple.edu" class="btn btn-primary">
           {t.sections.contact.cta}
         </a>
       </div>

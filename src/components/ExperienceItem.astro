@@ -1,20 +1,26 @@
 ---
-const { role, company, period, location, bullets = [] } = Astro.props;
+const { role, company, period, location, bullets = [], link, heading = 'h4' } = Astro.props;
+const Heading = heading;
 
 import { renderInlineMath } from "@/utils/katex.min";
 ---
 
-
 <article class="timeline-item glass p-6 md:p-8 reveal">
-  <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h4 class="text-base md:text-lg font-bold">{role}
-      <span class="text-black/60 dark:text-white/60">@ {company}</span>
-    </h4>
-    <span class="text-black/60 dark:text-white/60 text-sm">{period} • {location}</span>
+  <div class="timeline-head">
+    <div class="min-w-0">
+      <Heading class="text-lg font-semibold tracking-tight leading-snug">{role}</Heading>
+      <p class="timeline-org">{company}</p>
+    </div>
+    <p class="timeline-meta"><span>{period}</span><span>{location}</span></p>
   </div>
-  <ul class="mt-4 space-y-2 list-disc list-inside text-black/85 dark:text-white/85">
-    {bullets.map((b) =>
-      <li set:html={renderInlineMath(b)} />
-    )}
-  </ul>
+  {bullets.length > 0 && (
+    <ul class="mt-4 space-y-2">
+      {bullets.map((b) =>
+        <li set:html={renderInlineMath(b)} />
+      )}
+    </ul>
+  )}
+  {link && (
+    <a href={link.href} target="_blank" rel="noreferrer noopener" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--brand)] hover:underline">{link.label}<span aria-hidden="true">↗</span></a>
+  )}
 </article>

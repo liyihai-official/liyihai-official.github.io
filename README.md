@@ -12,7 +12,8 @@
 ## Content
 
 - `src/i18n/en.ts`, `src/i18n/zh.ts`: navigation and interface copy
-- `src/data/resume.ts`: experience and skills
+- `src/data/resume.ts`: education, experience and skills
+- `src/data/cubing.ts`: WCA speedcubing results snapshot (times in centiseconds; update after each competition)
 - `src/content/projects/`: project summaries; `link` and `repo` are optional
 - `src/content/blog/`: Markdown articles; use matching `-en` / `-zh` filename suffixes for translated article switching
 - `public/CV.pdf`: downloadable resume (case-sensitive path)
@@ -25,4 +26,4 @@ Content is rendered without JavaScript. Reveal effects respect reduced motion. P
 
 ## Content still to review
 
-The repository still contains two sample blog posts, one Chinese project versus four English projects, and English experience descriptions on the Chinese page. The mathematical-modeling project currently repeats the CNN project's summary. These require the owner's final content. Template `github.com/yourname/...` URLs were removed; add genuine repositories when available. -->
+The repository still contains two sample blog posts and one Chinese project versus four English projects. The mathematical-modeling project currently repeats the CNN project's summary. These require the owner's final content. Template `github.com/yourname/...` URLs were removed; add genuine repositories when available. -->

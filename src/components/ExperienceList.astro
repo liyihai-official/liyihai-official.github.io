@@ -6,7 +6,7 @@ const { groups = [] as ExperienceGroup[] } = Astro.props;
 <div class="space-y-10">
   {groups.map((g, i) => (
     <section class="experience-group" aria-labelledby={`experience-group-${i}`}>
-      <h3 id={`experience-group-${i}`} class="text-sm font-semibold pt-2 flex items-baseline gap-3"><span class="eyebrow" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{g.title}</h3>
+      <h3 id={`experience-group-${i}`} class="group-heading"><span class="eyebrow" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{g.title}</h3>
       <div class="grid gap-4">{g.items.map(it => <ExperienceItem {...it} />)}</div>
     </section>
   ))}

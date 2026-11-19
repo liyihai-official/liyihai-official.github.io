@@ -24,7 +24,7 @@ const alternateHref = counterpart ? `/${alternateLang}/blog/${counterpart.slug}/
     <article class="prose prose-zinc max-w-none dark:prose-invert">
       <a href={`/${langSafe}/blog/`} class="text-sm">← {t.ui.back}</a>
       <h1 class="mb-2 mt-6">{entry.data.title}</h1>
-      <p class="text-sm text-black/60 dark:text-white/60">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(entry.data.date))}</p>
+      <p class="text-sm muted">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(entry.data.date))}</p>
       <div class="mt-6">
         <Content />
       </div>

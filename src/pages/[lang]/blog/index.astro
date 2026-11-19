@@ -22,9 +22,9 @@ const posts = await getCollection('blog', ({ data }) => data.lang === langSafe);
     <div class="grid gap-4">
       {posts.sort((a,b)=> a.data.date < b.data.date ? 1 : -1).map((p) => (
         <a href={`/${langSafe}/blog/${p.slug}`} class="glass p-6 md:p-8 card-hover">
-          <h2 class="text-xl font-bold">{p.data.title}</h2>
-          {p.data.description && <p class="text-black/70 dark:text-white/70 mt-2">{p.data.description}</p>}
-          <p class="text-sm text-black/60 dark:text-white/60 mt-3">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(p.data.date))}</p>
+          <h2 class="text-lg font-semibold tracking-tight">{p.data.title}</h2>
+          {p.data.description && <p class="mt-3 muted text-sm">{p.data.description}</p>}
+          <p class="mt-4 text-xs muted">{new Intl.DateTimeFormat(langSafe, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(p.data.date))}</p>
         </a>
       ))}
     </div>
